@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Presence Audit — Jennifer Skapriwsky</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Serif+Display&display=swap');
+
+  :root {
+    --navy: #1a2332;
+    --navy-deep: #111927;
+    --gold: #c9a84c;
+    --gold-muted: #b8993f;
+    --gold-light: rgba(201, 168, 76, 0.12);
+    --cream: #f5f0e8;
+    --cream-dark: #ebe4d8;
+    --warm-white: #faf8f4;
+    --charcoal: #2d3748;
+    --text-primary: #1a2332;
+    --text-secondary: #5a6577;
+    --text-muted: #8a94a6;
+    --red-accent: #c0392b;
+    --red-bg: #fdf2f0;
+    --red-border: #e74c3c;
+    --green-accent: #27763b;
+    --green-bg: #f0f7f2;
+    --green-border: #2ecc71;
+    --amber-accent: #b8860b;
+    --amber-bg: #fdf8ee;
+    --border-light: #e2ddd4;
+    --border-medium: #d4cec4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    background: var(--warm-white);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    background: var(--warm-white);
+  }
+
+  /* =====================
+     HERO — Complete first scene
+     ===================== */
+  .hero {
+    background: var(--navy);
+    color: #fff;
+    padding: 56px 48px 48px;
+    position: relative;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+
+  .hero-credentials {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.5;
+    margin-bottom: 36px;
+    max-width: 560px;
+  }
+
+  .hero-credentials span {
+    color: rgba(255,255,255,0.35);
+    margin: 0 6px;
+  }
+
+  /* Hero tension strip — the "support idea" */
+  .hero-tension {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+
+  .hero-tension-item {
+    padding: 20px 24px;
+    background: rgba(255,255,255,0.03);
+  }
+
+  .hero-tension-value {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 28px;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .hero-tension-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.4;
+  }
+
+  .hero-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .hero-footer-text {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .hero-footer-confidential {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
+  }
+
+  /* =====================
+     SECTION SYSTEM
+     ===================== */
+  .section {
+    padding: 48px 48px 0;
+  }
+
+  .section-header {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold-muted);
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .section-intro {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 620px;
+    margin-bottom: 32px;
+  }
+
+  /* =====================
+     STATS STRIP — kept, it was already strong
+     ===================== */
+  .stats-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--border-light);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+
+  .stat-item {
+    background: var(--warm-white);
+    padding: 24px 16px;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 32px;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* =====================
+     DIGITAL FOOTPRINT TABLE — with row emphasis
+     ===================== */
+  .footprint-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 28px;
+  }
+
+  .footprint-table th {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-align: left;
+    padding: 10px 16px;
+    border-bottom: 2px solid var(--border-medium);
+  }
+
+  .footprint-table td {
+    font-size: 14px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: top;
+  }
+
+  .footprint-table tr.row-critical {
+    background: var(--red-bg);
+  }
+
+  .footprint-table tr.row-critical td {
+    border-bottom-color: rgba(192, 57, 43, 0.12);
+  }
+
+  .footprint-table tr.row-warning {
+    background: var(--amber-bg);
+  }
+
+  .status-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 3px;
+  }
+
+  .status-issue { color: var(--red-accent); background: rgba(192, 57, 43, 0.1); }
+  .status-missing { color: var(--red-accent); background: rgba(192, 57, 43, 0.08); }
+  .status-stale { color: var(--amber-accent); background: rgba(184, 134, 11, 0.1); }
+  .status-live { color: var(--green-accent); background: rgba(39, 118, 59, 0.1); }
+
+  .confidence {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+  }
+
+  .key-issue {
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+
+  /* =====================
+     WHAT'S WORKING — proof rail, not table
+     ===================== */
+  .proof-rail {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .proof-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-light);
+    align-items: baseline;
+  }
+
+  .proof-item:last-child {
+    border-bottom: none;
+  }
+
+  .proof-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+
+  .proof-detail {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* =====================
+     URGENT FINDING — asymmetric, dramatic
+     ===================== */
+  .urgent-section {
+    padding: 0;
+    margin-top: 48px;
+  }
+
+  .urgent-block {
+    display: grid;
+    grid-template-columns: 6px 1fr;
+    background: var(--warm-white);
+  }
+
+  .urgent-sidebar {
+    background: var(--red-accent);
+    border-radius: 3px 0 0 3px;
+  }
+
+  .urgent-content {
+    padding: 40px 48px;
+    background: var(--red-bg);
+    border: 1px solid rgba(192, 57, 43, 0.12);
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .urgent-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--red-accent);
+    margin-bottom: 16px;
+  }
+
+  .urgent-headline {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 22px;
+    color: var(--text-primary);
+    line-height: 1.35;
+    margin-bottom: 20px;
+  }
+
+  .urgent-body {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 580px;
+    margin-bottom: 20px;
+  }
+
+  .urgent-source {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .secondary-finding {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(192, 57, 43, 0.12);
+  }
+
+  .secondary-finding-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  /* =====================
+     OPPORTUNITIES — graduated emphasis
+     ===================== */
+  .opportunities {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Primary opportunity — large treatment */
+  .opp-primary {
+    padding: 36px 32px;
+    background: var(--green-bg);
+    border: 1px solid rgba(39, 118, 59, 0.12);
+    border-radius: 6px;
+    margin-bottom: 24px;
+  }
+
+  .opp-number {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 28px;
+    color: var(--border-medium);
+    margin-bottom: 12px;
+  }
+
+  .opp-headline {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+
+  .opp-body {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+    margin-bottom: 20px;
+  }
+
+  .fix-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--green-accent);
+    padding: 8px 14px;
+    background: rgba(39, 118, 59, 0.08);
+    border-radius: 4px;
+    border: 1px solid rgba(39, 118, 59, 0.15);
+  }
+
+  .fix-tag::before {
+    content: "→";
+    font-weight: 700;
+  }
+
+  /* Secondary opportunities — medium treatment */
+  .opp-secondary {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border-light);
+    align-items: start;
+  }
+
+  .opp-secondary:last-child {
+    border-bottom: none;
+  }
+
+  .opp-secondary .opp-number {
+    font-size: 22px;
+    color: var(--border-medium);
+    margin-bottom: 0;
+  }
+
+  .opp-secondary .opp-headline {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .opp-secondary .opp-body {
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+
+  /* Compact opportunity — lightweight */
+  .opp-compact {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border-light);
+    align-items: center;
+  }
+
+  .opp-compact:last-child {
+    border-bottom: none;
+  }
+
+  .opp-compact .opp-number {
+    font-size: 18px;
+    color: var(--border-medium);
+    margin-bottom: 0;
+  }
+
+  .opp-compact-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .opp-compact .opp-headline {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  .opp-compact .opp-body {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 0;
+    max-width: none;
+  }
+
+  .opp-compact .fix-tag {
+    font-size: 12px;
+    padding: 6px 10px;
+    white-space: nowrap;
+  }
+
+  /* =====================
+     CONVERSION — chapter break + pricing
+     ===================== */
+  .chapter-break {
+    padding: 48px 48px 0;
+  }
+
+  .chapter-rule {
+    border: none;
+    border-top: 1px solid var(--border-medium);
+    margin-bottom: 48px;
+  }
+
+  .pricing-block {
+    background: var(--navy);
+    color: #fff;
+    padding: 48px;
+    border-radius: 8px;
+    margin: 0 48px;
+  }
+
+  .pricing-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .pricing-headline {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+
+  .pricing-price {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 36px;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .pricing-body {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 28px;
+  }
+
+  .pricing-includes {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.7;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* =====================
+     METHODOLOGY — compact, subordinate
+     ===================== */
+  .methodology {
+    padding: 48px 48px 0;
+  }
+
+  .method-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 32px;
+  }
+
+  .method-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .method-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .method-detail {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .sources {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-light);
+  }
+
+  /* =====================
+     FOOTER — designed close
+     ===================== */
+  .footer {
+    margin: 48px 48px;
+    padding: 24px 0;
+    border-top: 2px solid var(--navy);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .footer-details {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  .footer-link {
+    color: var(--gold-muted);
+    text-decoration: none;
+  }
+
+  /* Print / PDF adjustments */
+  @media print {
+    .page { max-width: none; }
+    .hero { break-after: avoid; }
+    .section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ==================== HERO ==================== -->
+  <header class="hero">
+    <div class="hero-label">Digital Presence Audit</div>
+    <h1 class="hero-name">Jennifer Skapriwsky, REALTOR®</h1>
+    <p class="hero-credentials">
+      Licensed REALTOR &amp; Loan Officer NMLS #2433200 (Active)
+      <span>·</span> 8 Years Active
+      <span>·</span> United Real Estate Partners, Metairie, LA
+    </p>
+
+    <!-- Tension strip — the support idea that makes you keep reading -->
+    <div class="hero-tension">
+      <div class="hero-tension-item">
+        <div class="hero-tension-value">1</div>
+        <div class="hero-tension-label">Dead link on her most-visited profile</div>
+      </div>
+      <div class="hero-tension-item">
+        <div class="hero-tension-value">5.0★</div>
+        <div class="hero-tension-label">Zillow rating — last review September 2020</div>
+      </div>
+      <div class="hero-tension-item">
+        <div class="hero-tension-value">0</div>
+        <div class="hero-tension-label">Platforms showing her loan officer credential</div>
+      </div>
+    </div>
+
+    <div class="hero-footer">
+      <span class="hero-footer-text">Prepared by ManifestLabX · May 2026</span>
+      <span class="hero-footer-confidential">Confidential</span>
+    </div>
+  </header>
+
+  <!-- ==================== WHAT WE FOUND — stats strip ==================== -->
+  <section class="section">
+    <div class="section-header">What We Found</div>
+    <div class="stats-strip">
+      <div class="stat-item">
+        <div class="stat-value">8</div>
+        <div class="stat-label">years active in<br>real estate</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">7</div>
+        <div class="stat-label">Zillow reviews — all<br>from 2019–2020</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">1</div>
+        <div class="stat-label">dead domain still<br>linked from Zillow</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">0</div>
+        <div class="stat-label">social posts<br>since 2022</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">1</div>
+        <div class="stat-label">loan officer license<br>not visible anywhere</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== COMPLETE DIGITAL FOOTPRINT ==================== -->
+  <section class="section">
+    <div class="section-header">Complete Digital Footprint</div>
+    <table class="footprint-table">
+      <thead>
+        <tr>
+          <th style="width:22%">Platform</th>
+          <th style="width:12%">Status</th>
+          <th>Key Issue</th>
+          <th style="width:12%">Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-critical">
+          <td><strong>Zillow</strong></td>
+          <td><span class="status-badge status-issue">Issue</span></td>
+          <td class="key-issue">5.0 stars, 7 reviews, all 2019–2020; links to dead domain</td>
+          <td class="confidence">Confirmed</td>
+        </tr>
+        <tr class="row-critical">
+          <td><strong>buyandsellwithjennie.com</strong></td>
+          <td><span class="status-badge status-missing">Missing</span></td>
+          <td class="key-issue">Domain lapsed — Zillow 'Visit agent website' link is dead</td>
+          <td class="confidence">Confirmed</td>
+        </tr>
+        <tr class="row-warning">
+          <td><strong>Facebook</strong></td>
+          <td><span class="status-badge status-stale">Stale</span></td>
+          <td class="key-issue">132 followers — last post 2022, dark for 3 years</td>
+          <td class="confidence">Confirmed</td>
+        </tr>
+        <tr class="row-warning">
+          <td><strong>United RE Partners</strong></td>
+          <td><span class="status-badge status-stale">Stale</span></td>
+          <td class="key-issue">Profile active — shows old address (3330 Veterans Blvd; moved to 2200 Houma)</td>
+          <td class="confidence">Confirmed</td>
+        </tr>
+        <tr>
+          <td>LinkedIn</td>
+          <td><span class="status-badge status-live">Live</span></td>
+          <td class="key-issue">linkedin.com/in/jennifer-skapriwsky-06571a10a — confirmed</td>
+          <td class="confidence">Confirmed</td>
+        </tr>
+        <tr>
+          <td>Realtor.com</td>
+          <td><span class="status-badge status-live">Live</span></td>
+          <td class="key-issue">Profile confirmed</td>
+          <td class="confidence">Confirmed</td>
+        </tr>
+        <tr>
+          <td>Yelp</td>
+          <td><span class="status-badge status-live">Live</span></td>
+          <td class="key-issue">Listing from December 2018 — not actively managed</td>
+          <td class="confidence">Confirmed</td>
+        </tr>
+        <tr>
+          <td>Google Business Profile</td>
+          <td><span class="status-badge status-missing">Missing</span></td>
+          <td class="key-issue">No GBP found</td>
+          <td class="confidence">Confirmed</td>
+        </tr>
+        <tr>
+          <td>Instagram</td>
+          <td><span class="status-badge status-missing">Missing</span></td>
+          <td class="key-issue">No profile found</td>
+          <td class="confidence">Confirmed</td>
+        </tr>
+        <tr>
+          <td>NMLS public profile</td>
+          <td><span class="status-badge status-live">Live</span></td>
+          <td class="key-issue">NMLS #2433200 active — visible only to those who know to look</td>
+          <td class="confidence">Confirmed</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ==================== WHAT'S WORKING — proof rail ==================== -->
+  <section class="section">
+    <div class="section-header">What's Working</div>
+    <div class="proof-rail">
+      <div class="proof-item">
+        <div class="proof-label">5.0-star Zillow rating</div>
+        <div class="proof-detail">Seven reviews at 5.0 stars is a strong foundation. The clients who did review you said exactly the right things. The problem is the last one was five years ago.</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-label">Dual license — REALTOR + Loan Officer</div>
+        <div class="proof-detail">NMLS #2433200 is an active loan officer license. This is genuinely rare. Almost no real estate agent in this market holds both. It means you can walk a buyer through the mortgage process in a way most agents cannot.</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-label">LinkedIn confirmed active</div>
+        <div class="proof-detail">LinkedIn profile confirmed — an additional professional signal for clients who research agents beyond Zillow.</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-label">Active production</div>
+        <div class="proof-detail">A confirmed sale in March 2025 demonstrates you are still actively working. The production exists — it just has no visible platform.</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-label">Real client satisfaction</div>
+        <div class="proof-detail">The language in your Zillow reviews is specific and credible — contract attention, transparency, closing through adversity. These are the words of clients who mean what they say.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MOST URGENT FINDING — asymmetric ==================== -->
+  <section class="urgent-section" style="padding: 0 48px;">
+    <div class="section-header" style="padding: 48px 0 0; margin-bottom: 28px; border-bottom: 1px solid var(--border-light);">Most Urgent Finding</div>
+    <div class="urgent-block">
+      <div class="urgent-sidebar"></div>
+      <div class="urgent-content">
+        <div class="urgent-headline">Your Zillow profile links to buyandsellwithjennie.com — a domain that no longer exists</div>
+        <div class="urgent-body">
+          Your Zillow profile lists buyandsellwithjennie.com as your website under 'Visit agent website.' The domain has lapsed and is now available for anyone to purchase. Every client who finds you on Zillow and clicks that link hits an error page or a domain parking page. This is the first thing they see when they try to learn more about you.
+        </div>
+        <div class="urgent-source">Confirmed — Zillow profile + DNS lookup, May 2026</div>
+
+        <div class="secondary-finding">
+          <div class="secondary-finding-label">Secondary</div>
+          <div class="urgent-body" style="margin-bottom: 0;">
+            Your NMLS #2433200 loan officer license is active and confirmed. It does not appear on your Zillow profile, your Facebook page, or your brokerage site. Most of your clients and prospects have no idea you hold it.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TOP OPPORTUNITIES — graduated ==================== -->
+  <section class="section">
+    <div class="section-header">Top Opportunities</div>
+    <div class="opportunities">
+
+      <!-- #1 — Primary: large treatment -->
+      <div class="opp-primary">
+        <div class="opp-number">1.</div>
+        <div class="opp-headline">Re-register buyandsellwithjennie.com and build a home base that works</div>
+        <div class="opp-body">
+          buyandsellwithjennie.com is available. Your email is jensky504@gmail.com — your professional identity is already built around 'Jennie.' A personal site at your own domain gives every Zillow visitor, every Facebook follower, and every new client a page that works and reflects who you are.
+        </div>
+        <div class="fix-tag">We'd build this for you — dual credential front and center, your domain, permanently yours.</div>
+      </div>
+
+      <!-- #2 — Secondary -->
+      <div class="opp-secondary">
+        <div class="opp-number">2.</div>
+        <div>
+          <div class="opp-headline">Make your loan officer license visible — it is one of the rarest credentials an agent can hold</div>
+          <div class="opp-body">
+            NMLS #2433200 is an active loan officer license. Almost no real estate agent in this market holds both licenses. It means you understand mortgage underwriting, debt-to-income ratios, and loan product options in a way most agents cannot. That credential should lead your bio on every platform.
+          </div>
+          <div class="fix-tag">We'd write the updated bio language and identify every profile that needs updating.</div>
+        </div>
+      </div>
+
+      <!-- #3 — Secondary -->
+      <div class="opp-secondary">
+        <div class="opp-number">3.</div>
+        <div>
+          <div class="opp-headline">Recapture Zillow reviews — last review September 2020</div>
+          <div class="opp-body">
+            Seven reviews at 5.0 stars is a strong foundation, but Zillow weights recency heavily. Your most recent review is now five years old. You had a confirmed sale in March 2025. Reaching back to recent clients with a direct review link would meaningfully shift your ranking.
+          </div>
+          <div class="fix-tag">We'd provide a ready-to-use review request template and a list of suggested outreach targets.</div>
+        </div>
+      </div>
+
+      <!-- #4 — Compact -->
+      <div class="opp-compact">
+        <div class="opp-number">4.</div>
+        <div class="opp-compact-text">
+          <div class="opp-headline">Reactivate your Facebook presence or take it dark</div>
+          <div class="opp-body">A page that hasn't posted since 2022 signals inactivity. A dormant page with 132 followers is worse than no page.</div>
+        </div>
+        <div class="fix-tag">30-day reactivation plan</div>
+      </div>
+
+      <!-- #5 — Compact -->
+      <div class="opp-compact">
+        <div class="opp-number">5.</div>
+        <div class="opp-compact-text">
+          <div class="opp-headline">Fix the stale office address on your brokerage profile</div>
+          <div class="opp-body">Still shows 3330 Veterans Blvd — the brokerage moved to 2200 Houma Blvd.</div>
+        </div>
+        <div class="fix-tag">10-minute fix</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== CHAPTER BREAK + PRICING ==================== -->
+  <div class="chapter-break">
+    <hr class="chapter-rule">
+  </div>
+
+  <div class="pricing-block">
+    <div class="pricing-label">What We'd Fix</div>
+    <div class="pricing-headline">Personal Digital Presence Package</div>
+    <div class="pricing-price">$500</div>
+    <div class="pricing-body">
+      Re-build buyandsellwithjennie.com as a professional personal site — your dual REALTOR + Loan Officer credential front and center, your 5.0-star Zillow rating, and a clear path for buyers to work with you. Hosted and live within 7 business days.
+    </div>
+    <div class="pricing-includes">
+      Also included: a Zillow profile update guide (dead link fix, loan officer credential added), a review request template for recent clients, and an office address correction checklist.
+    </div>
+  </div>
+
+  <!-- ==================== METHODOLOGY — compact grid ==================== -->
+  <section class="methodology">
+    <div class="section-header">How This Audit Was Conducted</div>
+    <div class="method-grid">
+      <div class="method-item">
+        <div class="method-label">Web &amp; Digital Infrastructure</div>
+        <div class="method-detail">Owned domain status, personal website quality, platform control and portability.</div>
+      </div>
+      <div class="method-item">
+        <div class="method-label">Local Search &amp; Visibility</div>
+        <div class="method-detail">Google Business Profile presence, NAP consistency, local pack eligibility.</div>
+      </div>
+      <div class="method-item">
+        <div class="method-label">Reputation &amp; Reviews</div>
+        <div class="method-detail">Review volume, recency, platform distribution, and rating consistency.</div>
+      </div>
+      <div class="method-item">
+        <div class="method-label">Brand &amp; Content Consistency</div>
+        <div class="method-detail">Handle consistency, credential visibility, bio accuracy across platforms.</div>
+      </div>
+      <div class="method-item">
+        <div class="method-label">Cross-Platform Accuracy</div>
+        <div class="method-detail">Brokerage name, contact info, office address, and website link verified across all surfaces.</div>
+      </div>
+    </div>
+    <div class="sources">
+      Sources: Zillow, Realtor.com, Google Business Profile, United RE Partners profile, Yelp, Facebook, LinkedIn, NMLS Consumer Access registry, DNS lookup · Audit date: May 2026
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER — designed close ==================== -->
+  <footer class="footer">
+    <div class="footer-brand">ManifestLabX</div>
+    <div class="footer-details">
+      Robert Israel · Covington, LA<br>
+      <a href="https://manifestlabx.com" class="footer-link">manifestlabx.com</a>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

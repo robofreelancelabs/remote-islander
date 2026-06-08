@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service Customer — Competitive Landscape 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap');
+
+  :root {
+    /* Dark-luxe: near-black with temperature, stepped surfaces */
+    --bg-deep: #0b0f14;
+    --bg-base: #0f1419;
+    --bg-raised: #151c24;
+    --bg-surface: #1a2230;
+    --bg-elevated: #1f2937;
+    --bg-highlight: #243040;
+
+    /* Service Customer green — the ONE accent */
+    --accent: #34d399;
+    --accent-muted: #2ab383;
+    --accent-dim: rgba(52, 211, 153, 0.12);
+    --accent-border: rgba(52, 211, 153, 0.2);
+
+    /* Text */
+    --text-primary: #f0f2f5;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --text-dim: #475569;
+
+    /* Semantic — subdued, not screaming */
+    --yes: #34d399;
+    --no: #64748b;
+    --partial: #f59e0b;
+
+    /* Borders */
+    --border: rgba(255,255,255,0.06);
+    --border-accent: rgba(52, 211, 153, 0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--bg-base);
+    min-height: 100vh;
+  }
+
+  /* =====================
+     HERO — bounded dark stage
+     ===================== */
+  .hero {
+    padding: 40px 48px 36px;
+    background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-base) 100%);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+
+  .hero-meta {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .hero-logo {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .hero-logo span {
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 5px;
+    font-size: 9px;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .hero-headline {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    max-width: 540px;
+    letter-spacing: -0.3px;
+  }
+
+  .hero-headline em {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  /* =====================
+     COMPARISON MATRIX — the core asset
+     ===================== */
+  .matrix-section {
+    padding: 36px 48px 0;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  .matrix {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .matrix th {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .matrix th.cap-col {
+    text-align: center;
+    color: var(--text-dim);
+  }
+
+  .matrix th.cap-col-accent {
+    text-align: center;
+    color: var(--accent-muted);
+    background: var(--accent-dim);
+    border-radius: 4px 4px 0 0;
+  }
+
+  .matrix td {
+    font-size: 13px;
+    padding: 14px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  .matrix td.center {
+    text-align: center;
+  }
+
+  /* Hero row — Service Customer */
+  .matrix tr.hero-row td {
+    background: var(--accent-dim);
+    border-bottom-color: var(--accent-border);
+  }
+
+  .matrix tr.hero-row td:first-child {
+    border-left: 3px solid var(--accent);
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .matrix tr.hero-row td:last-child {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Normal rows */
+  .matrix tr:not(.hero-row) td:first-child {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .matrix tr:not(.hero-row) td {
+    color: var(--text-secondary);
+  }
+
+  .matrix tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Type badges — single color system, not rainbow */
+  .type-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 3px;
+    text-align: center;
+    min-width: 80px;
+  }
+
+  .type-human { color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-border); }
+  .type-ai { color: var(--text-muted); background: rgba(100, 116, 139, 0.12); border: 1px solid rgba(100, 116, 139, 0.15); }
+  .type-hybrid { color: #f59e0b; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.15); }
+  .type-agency { color: var(--text-dim); background: rgba(71, 85, 105, 0.15); border: 1px solid rgba(71, 85, 105, 0.15); }
+
+  /* Capability indicators */
+  .cap-yes { color: var(--yes); font-size: 16px; }
+  .cap-no { color: var(--no); font-size: 13px; opacity: 0.4; }
+  .cap-partial { color: var(--partial); font-size: 14px; }
+
+  .price {
+    font-variant-numeric: tabular-nums;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .hero-row .price {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 24px;
+    padding: 14px 14px;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  .legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* =====================
+     VALUE PROPS — asymmetric, not three equal boxes
+     ===================== */
+  .value-section {
+    padding: 36px 48px 0;
+  }
+
+  .value-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 16px;
+  }
+
+  .value-primary {
+    grid-row: 1 / 3;
+    background: var(--bg-raised);
+    border: 1px solid var(--accent-border);
+    border-radius: 6px;
+    padding: 28px 28px;
+  }
+
+  .value-primary .value-label {
+    color: var(--accent);
+  }
+
+  .value-secondary {
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 22px 24px;
+  }
+
+  .value-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .value-headline {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+
+  .value-primary .value-headline {
+    font-size: 17px;
+    margin-bottom: 12px;
+  }
+
+  .value-body {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  .value-primary .value-body {
+    font-size: 13.5px;
+  }
+
+  /* =====================
+     TESTIMONIAL — luminous strip with real weight
+     ===================== */
+  .testimonial-section {
+    padding: 36px 48px 0;
+  }
+
+  .testimonial {
+    border-left: 3px solid var(--accent);
+    padding: 28px 32px;
+    background: var(--bg-raised);
+    border-radius: 0 6px 6px 0;
+  }
+
+  .testimonial-quote {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 18px;
+    color: var(--text-primary);
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+
+  .testimonial-attribution {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .testimonial-attribution strong {
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
+
+  /* =====================
+     CTA — visible, arm's-length readable
+     ===================== */
+  .cta-section {
+    padding: 36px 48px;
+  }
+
+  .cta-block {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+    padding: 28px 32px;
+    background: linear-gradient(135deg, var(--accent-dim) 0%, var(--bg-raised) 100%);
+    border: 1px solid var(--accent-border);
+    border-radius: 8px;
+  }
+
+  .cta-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .cta-text strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .cta-contact {
+    text-align: right;
+    min-width: 200px;
+  }
+
+  .cta-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .cta-phone {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 22px;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .cta-email {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* =====================
+     FOOTER
+     ===================== */
+  .footer {
+    padding: 0 48px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    margin: 0 48px;
+    padding: 20px 0;
+  }
+
+  .footer-left {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .footer-right {
+    font-size: 12px;
+    color: var(--accent-muted);
+    font-weight: 500;
+  }
+
+  /* Print */
+  @media print {
+    body { background: var(--bg-base); }
+    .page { max-width: none; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ==================== HERO ==================== -->
+  <header class="hero">
+    <div class="hero-top">
+      <div class="hero-meta">Competitive Intelligence · Fixed Ops Outside Sales · 2026</div>
+      <div class="hero-logo">
+        <span>CUSTOMER</span>
+        Service
+      </div>
+    </div>
+    <h1 class="hero-headline">
+      <em>Conquest-first.</em> Human BDC.<br>
+      Fixed ops only.
+    </h1>
+    <p class="hero-sub">
+      Every competitor in this space is chasing inbound leads, retaining existing CRM customers, or replacing humans with AI. Service Customer does none of those things. They conquest brand-new service customers — people who have never visited your dealership — and close them with a real human BDC rep. A genuinely uncrowded lane.
+    </p>
+  </header>
+
+  <!-- ==================== COMPARISON MATRIX ==================== -->
+  <section class="matrix-section">
+    <div class="section-label">Competitive Landscape</div>
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th style="width:15%">Company</th>
+          <th style="width:13%">Type</th>
+          <th style="width:22%">Primary Focus</th>
+          <th class="cap-col-accent" style="width:10%">Human BDC</th>
+          <th class="cap-col-accent" style="width:11%">Conquest Service</th>
+          <th class="cap-col-accent" style="width:11%">Fixed Ops Only</th>
+          <th style="width:11%">Price / Mo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hero-row">
+          <td>Service Customer</td>
+          <td><span class="type-badge type-human">Human BDC + Conquest</span></td>
+          <td>Conquest new service customers w/ human BDC</td>
+          <td class="center"><span class="cap-yes">&#10003;</span></td>
+          <td class="center"><span class="cap-yes">&#10003;</span></td>
+          <td class="center"><span class="cap-yes">&#10003;</span></td>
+          <td class="price hero-row">$3,995–$5,995</td>
+        </tr>
+        <tr>
+          <td>Toma</td>
+          <td><span class="type-badge type-ai">Pure AI</span></td>
+          <td>Inbound call handling, scheduling automation</td>
+          <td class="center"><span class="cap-no">&#10005;</span></td>
+          <td class="center"><span class="cap-no">&#10005;</span></td>
+          <td class="center"><span class="cap-no">&#10005;</span></td>
+          <td class="price">Custom</td>
+        </tr>
+        <tr>
+          <td>Stella AI</td>
+          <td><span class="type-badge type-ai">Pure AI</span></td>
+          <td>Inbound service calls, AI scheduling</td>
+          <td class="center"><span class="cap-no">&#10005;</span></td>
+          <td class="center"><span class="cap-no">&#10005;</span></td>
+          <td class="center"><span class="cap-no">&#10005;</span></td>
+          <td class="price">Custom</td>
+        </tr>
+        <tr>
+          <td>Flai</td>
+          <td><span class="type-badge type-ai">Pure AI</span></td>
+          <td>AI service call handling &amp; booking</td>
+          <td class="center"><span class="cap-no">&#10005;</span></td>
+          <td class="center"><span class="cap-no">&#10005;</span></td>
+          <td class="center"><span class="cap-no">&#10005;</span></td>
+          <td class="price">Custom</td>
+        </tr>
+        <tr>
+          <td>Podium (Jerry)</td>
+          <td><span class="type-badge type-ai">AI-First</span></td>
+          <td>Web leads, reviews, chat conversion</td>
+          <td class="center"><span class="cap-no">&#10005;</span></td>
+          <td class="center"><span class="cap-no">&#10005;</span></td>
+          <td class="center"><span class="cap-no">&#10005;</span></td>
+          <td class="price">~$600–$1,500</td>
+        </tr>
+        <tr>
+          <td>Strolid</td>
+          <td><span class="type-badge type-hybrid">Hybrid AI+Human</span></td>
+          <td>Inbound sales &amp; service, CRM leads</td>
+          <td class="center"><span class="cap-yes">&#10003;</span></td>
+          <td class="center"><span class="cap-no">&#10005;</span></td>
+          <td class="center"><span class="cap-no">&#10005;</span></td>
+          <td class="price">Custom</td>
+        </tr>
+        <tr>
+          <td>Better Car People</td>
+          <td><span class="type-badge type-hybrid">Hybrid</span></td>
+          <td>24/7 inbound BDC, sales &amp; service</td>
+          <td class="center"><span class="cap-yes">&#10003;</span></td>
+          <td class="center"><span class="cap-no">&#10005;</span></td>
+          <td class="center"><span class="cap-no">&#10005;</span></td>
+          <td class="price">Custom</td>
+        </tr>
+        <tr>
+          <td>TVI MarketPro3</td>
+          <td><span class="type-badge type-agency">Marketing Agency</span></td>
+          <td>Direct mail &amp; digital service mktg</td>
+          <td class="center"><span class="cap-no">&#10005;</span></td>
+          <td class="center"><span class="cap-partial">&#9650;</span></td>
+          <td class="center"><span class="cap-partial">&#9650;</span></td>
+          <td class="price">Custom</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="legend">
+      <span><span class="cap-yes">&#10003;</span> Full capability</span>
+      <span><span class="cap-partial">&#9650;</span> Partial / adjacent</span>
+      <span><span class="cap-no">&#10005;</span> Not offered</span>
+    </div>
+  </section>
+
+  <!-- ==================== VALUE PROPS — asymmetric grid ==================== -->
+  <section class="value-section">
+    <div class="section-label">Why It Matters</div>
+    <div class="value-grid">
+
+      <!-- Primary — conquest positioning (biggest card, spans two rows) -->
+      <div class="value-primary">
+        <div class="value-label">The Only Conquest-First Platform</div>
+        <div class="value-headline">Zero overlap with what your team is already doing</div>
+        <div class="value-body">
+          Every competitor targets customers already in your CRM or responding to inbound. Service Customer exclusively targets brand-new conquest service customers — people who have never visited your store. This is additive volume, not a replacement for anything your team does today.
+        </div>
+      </div>
+
+      <!-- Secondary — human BDC -->
+      <div class="value-secondary">
+        <div class="value-label">Human BDC Where It Matters</div>
+        <div class="value-headline">90%+ booking rate on cold conquest outreach</div>
+        <div class="value-body">
+          AI tools dominate inbound call handling. But no AI company focuses a trained human rep on cold conquest outreach. That's the gap Service Customer fills.
+        </div>
+      </div>
+
+      <!-- Secondary — transparent pricing -->
+      <div class="value-secondary">
+        <div class="value-label">Transparent Pricing</div>
+        <div class="value-headline">$3,995–$5,995/mo with a money-back guarantee</div>
+        <div class="value-body">
+          Most competitors use custom/enterprise pricing with no stated guarantee. That's a confidence signal no AI-first competitor can match at conquest.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== TESTIMONIAL ==================== -->
+  <section class="testimonial-section">
+    <div class="testimonial">
+      <div class="testimonial-quote">
+        "Service Customer reactivated more than 300 lost customers in our first 90 days. Their human follow-up blows AI tools out of the water."
+      </div>
+      <div class="testimonial-attribution">
+        <strong>Lucas Young</strong> · Service Manager
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA ==================== -->
+  <section class="cta-section">
+    <div class="cta-block">
+      <div class="cta-text">
+        <strong>See the conquest numbers for your market.</strong><br>
+        15-minute call. We'll pull your zip codes and show you the service conquest volume available around your dealership.
+      </div>
+      <div class="cta-contact">
+        <div class="cta-name">Derek Anderson</div>
+        <div class="cta-phone">(817) 808-8423</div>
+        <div class="cta-email">dallasmoneyback@gmail.com · Dallas, TX</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <div style="padding: 0 48px;">
+    <footer class="footer">
+      <div class="footer-left">servicecustomer.com</div>
+      <div class="footer-right">Competitive Landscape 2026</div>
+    </footer>
+  </div>
+
+</div>
+
+</body>
+</html>
