@@ -337,14 +337,10 @@
       <div class="sidebar-label">Category</div>
       <div class="filter-pills" id="catFilters">
         <span class="pill active" data-cat="all" onclick="filterCat('all',this)">All</span>
-        <span class="pill" data-cat="tech" onclick="filterCat('tech',this)">Tech</span>
-        <span class="pill" data-cat="pm" onclick="filterCat('pm',this)">Project Mgmt</span>
-        <span class="pill" data-cat="finance" onclick="filterCat('finance',this)">Finance</span>
-        <span class="pill" data-cat="sales" onclick="filterCat('sales',this)">Sales</span>
+        <span class="pill" data-cat="admin" onclick="filterCat('admin',this)">EA / VA</span>
         <span class="pill" data-cat="cs" onclick="filterCat('cs',this)">Cust. Service</span>
-        <span class="pill" data-cat="marketing" onclick="filterCat('marketing',this)">Marketing</span>
-        <span class="pill" data-cat="health" onclick="filterCat('health',this)">Medical</span>
-        <span class="pill" data-cat="ops" onclick="filterCat('ops',this)">Operations</span>
+        <span class="pill" data-cat="sales" onclick="filterCat('sales',this)">Sales</span>
+        <span class="pill" data-cat="finance" onclick="filterCat('finance',this)">Bookkeeping</span>
       </div>
     </div>
 
@@ -365,779 +361,369 @@
 
 <script>
 const DATA = {
-  "software-engineer": {
-    title: "Software Engineer",
-    cat: "tech",
-    icon: "ti-code",
-    tagline: "Designs, builds, and maintains software applications and systems for distributed teams.",
-    salary: "$85k–$160k",
+  "ea-va": {
+    title: "Executive Assistant / VA",
+    cat: "admin",
+    icon: "ti-checklist",
+    tagline: "Supports executives and business owners with scheduling, inbox, and coordination — fully remote, on US hours.",
+    salary: "$800–$1,800/mo",
     demand: "Very High",
-    remote: "Fully Remote",
-    baseline: ["Version control (Git)", "Problem-solving", "Async communication", "Documentation", "Self-directed learning", "Code review"],
+    remote: "Fully Remote · US Hours",
+    baseline: ["Reliable 25+ Mbps internet", "Quiet, dedicated workspace", "US EST/CST hours overlap", "Strong written English", "Discretion & confidentiality", "Proactive communication"],
     levels: {
       Junior: {
         hard: [
-          { text: "Proficiency in at least one language (Python, JS, Java, Go)", req: true },
-          { text: "Understanding of data structures & algorithms", req: true },
-          { text: "Basic SQL / database knowledge", req: true },
-          { text: "Git & version control (commits, PRs, branching)", req: true },
-          { text: "REST API concepts", req: true },
-          { text: "Basic HTML/CSS if front-end adjacent", req: false },
-          { text: "Familiarity with Linux/bash command line", req: false },
+          { text: "Google Workspace (Gmail, Calendar, Drive, Docs)", req: true },
+          { text: "Calendar & schedule management for one person", req: true },
+          { text: "Typing 45+ WPM with accuracy", req: true },
+          { text: "Drafting professional emails in English", req: true },
+          { text: "Basic data entry & file organization", req: true },
+          { text: "Comfortable on Zoom / Google Meet", req: false },
         ],
         soft: [
-          { text: "Receptive to feedback and code review", req: true },
-          { text: "Clear written communication for async teams", req: true },
-          { text: "Proactive about asking for help", req: true },
-          { text: "Curiosity and self-driven learning habits", req: false },
+          { text: "Highly organized and detail-oriented", req: true },
+          { text: "Clear, prompt written communication", req: true },
+          { text: "Proactive — flags issues before they grow", req: true },
+          { text: "Discretion with confidential information", req: true },
         ],
         tools: [
-          { text: "GitHub / GitLab", req: true },
-          { text: "Slack or Teams for async comms", req: true },
-          { text: "VS Code or similar IDE", req: true },
-          { text: "Basic CI/CD awareness (GitHub Actions, etc.)", req: false },
-          { text: "Jira or Linear for ticket management", req: false },
+          { text: "Google Workspace or Microsoft 365", req: true },
+          { text: "One task tool (Notion, Asana, Trello, ClickUp)", req: false },
+          { text: "Slack or Teams for async comms", req: false },
         ],
         experience: [
-          { text: "CS degree OR bootcamp + portfolio projects", req: true },
-          { text: "At least 2 public/portfolio coding projects", req: true },
-          { text: "0–2 years professional or internship experience", req: false },
+          { text: "Some experience supporting a manager or business owner (even informal)", req: true },
+          { text: "Customer-facing or admin background", req: false },
         ],
       },
       Mid: {
         hard: [
-          { text: "Strong command of 1–2 languages (Python, TypeScript, Go, Java)", req: true },
-          { text: "System design fundamentals", req: true },
-          { text: "Relational & NoSQL database experience", req: true },
-          { text: "REST + GraphQL API design/consumption", req: true },
-          { text: "Docker & containerization basics", req: true },
-          { text: "Unit/integration testing proficiency", req: true },
-          { text: "Cloud platform experience (AWS, GCP, or Azure)", req: false },
-          { text: "CI/CD pipeline experience", req: false },
+          { text: "Manage calendars & inboxes for multiple stakeholders", req: true },
+          { text: "Travel booking & itinerary management", req: true },
+          { text: "Meeting prep, agendas, and minutes", req: true },
+          { text: "Light project coordination across a team", req: true },
+          { text: "Document / SOP creation and upkeep", req: true },
+          { text: "Basic CRM hygiene (HubSpot or similar)", req: false },
         ],
         soft: [
-          { text: "Strong async written communication", req: true },
-          { text: "Ability to self-manage sprints and deadlines", req: true },
-          { text: "Code review leadership + constructive feedback", req: true },
-          { text: "Proactive status updates to remote team", req: true },
+          { text: "Manages competing priorities without dropping balls", req: true },
+          { text: "Anticipates the executive's needs", req: true },
+          { text: "Confident communicating on behalf of the principal", req: true },
         ],
         tools: [
-          { text: "GitHub/GitLab (advanced: code review, Actions)", req: true },
-          { text: "Docker / Docker Compose", req: true },
-          { text: "Postman or similar API tools", req: false },
-          { text: "Jira, Linear, or Shortcut", req: false },
-          { text: "Datadog / Sentry monitoring awareness", req: false },
+          { text: "Scheduling tools (Calendly or similar)", req: true },
+          { text: "Project tool fluency (Asana / Notion / ClickUp)", req: true },
+          { text: "CRM basics (HubSpot)", req: false },
+          { text: "Expense / receipt tools", req: false },
         ],
         experience: [
-          { text: "3–5 years professional experience", req: true },
-          { text: "Evidence of shipped features in production", req: true },
-          { text: "Experience working in remote teams", req: false },
+          { text: "2–4 years as an EA/VA or operations support", req: true },
+          { text: "Supported a US-based executive or team remotely", req: false },
         ],
       },
       Senior: {
         hard: [
-          { text: "Expert-level in primary language + secondary language", req: true },
-          { text: "Advanced system design & distributed architecture", req: true },
-          { text: "Microservices design patterns", req: true },
-          { text: "Cloud-native (AWS/GCP/Azure) architecture", req: true },
-          { text: "Performance optimization & scalability", req: true },
-          { text: "Security best practices (OWASP, auth/authz)", req: true },
-          { text: "Infrastructure as Code (Terraform, CDK)", req: false },
-          { text: "Observability & monitoring stack ownership", req: false },
+          { text: "Chief-of-staff style support to founders / execs", req: true },
+          { text: "Inbox & calendar ownership with autonomy", req: true },
+          { text: "Vendor, contractor & travel management", req: true },
+          { text: "Process design and team SOP ownership", req: true },
+          { text: "Light bookkeeping / invoicing coordination", req: false },
+          { text: "Onboarding & coordinating other VAs", req: false },
         ],
         soft: [
-          { text: "Technical mentorship of junior engineers", req: true },
-          { text: "Stakeholder communication (non-technical)", req: true },
-          { text: "Unblocking team decisions independently", req: true },
-          { text: "Driving remote engineering culture & standards", req: true },
+          { text: "Operates with minimal direction, full ownership", req: true },
+          { text: "Trusted with sensitive business and personal matters", req: true },
+          { text: "Mentors junior VAs", req: false },
         ],
         tools: [
-          { text: "Full CI/CD pipeline ownership", req: true },
-          { text: "Architecture docs tooling (Notion, Confluence, ADRs)", req: true },
-          { text: "Cloud console + IaC tools", req: true },
-          { text: "Monitoring: Datadog, New Relic, Grafana", req: false },
+          { text: "Full productivity stack + automation awareness (Zapier/Make)", req: true },
+          { text: "CRM + project + comms tools end-to-end", req: true },
         ],
         experience: [
-          { text: "6+ years professional experience", req: true },
-          { text: "Led delivery of complex product features end-to-end", req: true },
-          { text: "Experience as tech lead or principal contributor", req: false },
-          { text: "Cross-functional collaboration track record", req: false },
+          { text: "5+ years EA/VA, including executive-level support", req: true },
+          { text: "Long-tenure remote role with a US client", req: false },
         ],
       }
     },
     redFlags: [
-      "No public code samples, GitHub profile, or portfolio",
-      "Cannot explain a past technical decision with trade-offs",
-      "Poor async communication (slow, vague, no updates)",
-      "Unable to write basic code without AI assistance in screening",
-      "No interest in testing, documentation, or code quality"
+      "Slow or unprofessional written English",
+      "No reliable internet or quiet workspace",
+      "Cannot give an example of managing someone's calendar",
+      "Vague about handling confidential information",
+      "Needs constant direction; not a self-starter"
     ]
   },
 
-  "project-manager": {
-    title: "Project Manager",
-    cat: "pm",
-    icon: "ti-layout-kanban",
-    tagline: "Oversees project delivery, coordinates cross-functional teams, and ensures milestones are met in distributed environments.",
-    salary: "$70k–$130k",
-    demand: "Very High",
-    remote: "Fully Remote",
-    baseline: ["Clear communication", "Risk identification", "Stakeholder management", "Deadline ownership", "Documentation", "Tool proficiency"],
-    levels: {
-      Junior: {
-        hard: [
-          { text: "Understanding of Agile/Scrum fundamentals", req: true },
-          { text: "Ability to build and maintain project timelines", req: true },
-          { text: "Basic budget tracking", req: true },
-          { text: "Meeting facilitation (even virtual)", req: true },
-          { text: "Documentation of project plans, minutes, decisions", req: false },
-        ],
-        soft: [
-          { text: "Strong written and verbal communication", req: true },
-          { text: "Organized and detail-oriented", req: true },
-          { text: "Comfortable managing up and laterally", req: false },
-          { text: "Calm under pressure and ambiguity", req: false },
-        ],
-        tools: [
-          { text: "Jira, Asana, Monday.com, or similar", req: true },
-          { text: "Google Workspace / Microsoft Office", req: true },
-          { text: "Zoom / Teams for remote facilitation", req: true },
-          { text: "Slack or Teams for async updates", req: false },
-        ],
-        experience: [
-          { text: "1–3 years in a coordination or admin-adjacent role", req: true },
-          { text: "Exposure to a full project lifecycle", req: false },
-        ],
-      },
-      Mid: {
-        hard: [
-          { text: "Full Agile/Scrum/Kanban delivery lifecycle", req: true },
-          { text: "Risk register and mitigation planning", req: true },
-          { text: "Budgeting and resource allocation", req: true },
-          { text: "Dependency mapping and critical path analysis", req: true },
-          { text: "Status reporting to senior stakeholders", req: true },
-          { text: "Change management processes", req: false },
-        ],
-        soft: [
-          { text: "Confident facilitator across time zones", req: true },
-          { text: "Conflict resolution between team members", req: true },
-          { text: "Ability to manage multiple projects simultaneously", req: true },
-          { text: "Executive presence and stakeholder confidence", req: false },
-        ],
-        tools: [
-          { text: "Jira (admin + board config) or equivalent", req: true },
-          { text: "Confluence or Notion for documentation", req: true },
-          { text: "Gantt/roadmap tools (Smartsheet, Miro)", req: false },
-          { text: "Slack/Teams for async team management", req: false },
-        ],
-        experience: [
-          { text: "3–6 years managing projects end-to-end", req: true },
-          { text: "Delivered at least one multi-team initiative", req: true },
-          { text: "Remote team management experience", req: false },
-        ],
-      },
-      Senior: {
-        hard: [
-          { text: "Portfolio and program-level management", req: true },
-          { text: "PMO governance and process design", req: true },
-          { text: "Advanced risk management and scenario planning", req: true },
-          { text: "Vendor and contract management", req: true },
-          { text: "PMP or PRINCE2 certification", req: false },
-          { text: "OKR/KPI alignment to business goals", req: false },
-        ],
-        soft: [
-          { text: "C-suite communication and executive reporting", req: true },
-          { text: "Mentoring junior PMs", req: true },
-          { text: "Driving team culture and accountability remotely", req: true },
-          { text: "Organizational change leadership", req: false },
-        ],
-        tools: [
-          { text: "Enterprise PM platforms (MS Project, Smartsheet)", req: true },
-          { text: "BI/reporting tools (Tableau, Power BI) awareness", req: false },
-          { text: "Full async communication stack", req: true },
-        ],
-        experience: [
-          { text: "7+ years, including multi-million dollar projects", req: true },
-          { text: "Led fully distributed remote teams", req: true },
-          { text: "Scaled delivery processes across an organization", req: false },
-        ],
-      }
-    },
-    redFlags: [
-      "Cannot describe how they handle a project that goes off-track",
-      "No knowledge of Agile frameworks or project management software",
-      "Poor written communication in application or screening",
-      "No examples of stakeholder management or conflict resolution",
-      "Relies entirely on synchronous meetings, no async processes"
-    ]
-  },
-
-  "accountant": {
-    title: "Accountant / Financial Analyst",
-    cat: "finance",
-    icon: "ti-calculator",
-    tagline: "Manages financial records, reporting, analysis, and compliance for organizations operating remotely.",
-    salary: "$55k–$110k",
-    demand: "High",
-    remote: "Hybrid–Fully Remote",
-    baseline: ["Numerical accuracy", "GAAP/IFRS awareness", "Confidentiality", "Excel proficiency", "Regulatory compliance", "Attention to detail"],
-    levels: {
-      Junior: {
-        hard: [
-          { text: "General ledger entries and reconciliations", req: true },
-          { text: "Accounts payable / receivable processing", req: true },
-          { text: "Basic financial statement preparation", req: true },
-          { text: "GAAP fundamentals", req: true },
-          { text: "Excel: pivot tables, VLOOKUP, formulas", req: true },
-          { text: "Tax filing basics (local or federal)", req: false },
-        ],
-        soft: [
-          { text: "High attention to detail and accuracy", req: true },
-          { text: "Ability to meet strict deadlines independently", req: true },
-          { text: "Discretion with confidential financial data", req: true },
-        ],
-        tools: [
-          { text: "QuickBooks or Xero", req: true },
-          { text: "Excel / Google Sheets", req: true },
-          { text: "ERP awareness (SAP, NetSuite)", req: false },
-        ],
-        experience: [
-          { text: "BS/BA in Accounting or Finance", req: true },
-          { text: "0–2 years in accounting role or internship", req: false },
-        ],
-      },
-      Mid: {
-        hard: [
-          { text: "Month-end and year-end close process", req: true },
-          { text: "Financial reporting (P&L, balance sheet, cash flow)", req: true },
-          { text: "Variance analysis and forecasting", req: true },
-          { text: "Internal controls awareness", req: true },
-          { text: "Tax preparation or coordination with CPA", req: false },
-          { text: "Audit preparation support", req: false },
-          { text: "Multi-entity / intercompany accounting", req: false },
-        ],
-        soft: [
-          { text: "Proactive communication on financial discrepancies", req: true },
-          { text: "Collaboration with non-finance teams remotely", req: true },
-          { text: "Self-managed workflows with minimal oversight", req: true },
-        ],
-        tools: [
-          { text: "NetSuite, SAP, or similar ERP", req: true },
-          { text: "Advanced Excel / Google Sheets", req: true },
-          { text: "Expensify or Concur (expense management)", req: false },
-        ],
-        experience: [
-          { text: "3–6 years in accounting or FP&A role", req: true },
-          { text: "CPA or CPA track (or equivalent)", req: false },
-          { text: "Experience with remote financial operations", req: false },
-        ],
-      },
-      Senior: {
-        hard: [
-          { text: "Financial consolidations and intercompany eliminations", req: true },
-          { text: "GAAP/IFRS compliance and reporting", req: true },
-          { text: "Strategic FP&A (scenario modeling, long-range planning)", req: true },
-          { text: "Audit management (internal and external)", req: true },
-          { text: "Technical accounting research", req: false },
-          { text: "M&A financial due diligence experience", req: false },
-        ],
-        soft: [
-          { text: "Board and CFO-level reporting communication", req: true },
-          { text: "Cross-functional finance partnership", req: true },
-          { text: "Mentoring junior accounting staff", req: true },
-        ],
-        tools: [
-          { text: "Enterprise ERP (SAP, Oracle, NetSuite) advanced", req: true },
-          { text: "Business intelligence (Power BI, Tableau)", req: false },
-          { text: "Financial consolidation software", req: false },
-        ],
-        experience: [
-          { text: "7+ years, with senior/manager experience", req: true },
-          { text: "CPA or equivalent designation", req: true },
-          { text: "Led remote finance team or process", req: false },
-        ],
-      }
-    },
-    redFlags: [
-      "Inability to explain a reconciliation discrepancy they resolved",
-      "No knowledge of primary accounting software (QuickBooks/NetSuite)",
-      "Vague about compliance experience or regulatory knowledge",
-      "Poor documentation or organizational habits",
-      "Cannot describe a month-end or year-end close experience"
-    ]
-  },
-
-  "account-executive": {
-    title: "Account Executive",
-    cat: "sales",
-    icon: "ti-chart-line",
-    tagline: "Drives new business acquisition, manages the full sales cycle, and meets revenue targets in a remote-first environment.",
-    salary: "$60k–$140k + commission",
-    demand: "Very High",
-    remote: "Fully Remote",
-    baseline: ["CRM proficiency", "Quota attainment", "Prospecting discipline", "Objection handling", "Pipeline hygiene", "Async follow-up"],
-    levels: {
-      Junior: {
-        hard: [
-          { text: "Outbound prospecting (cold email, LinkedIn, calls)", req: true },
-          { text: "Discovery call execution", req: true },
-          { text: "CRM data entry and hygiene", req: true },
-          { text: "Basic objection handling", req: true },
-          { text: "Understanding of sales stages and funnel", req: false },
-        ],
-        soft: [
-          { text: "High resilience and persistence (handles rejection)", req: true },
-          { text: "Clear verbal and written communication", req: true },
-          { text: "Self-motivated without in-person accountability", req: true },
-          { text: "Curiosity about the product/market", req: false },
-        ],
-        tools: [
-          { text: "Salesforce or HubSpot CRM", req: true },
-          { text: "LinkedIn Sales Navigator", req: false },
-          { text: "Zoom or video sales tools", req: true },
-          { text: "Outreach / Apollo / Salesloft", req: false },
-        ],
-        experience: [
-          { text: "1–2 years in SDR/BDR or entry sales role", req: true },
-          { text: "Track record of quota or metric attainment", req: false },
-        ],
-      },
-      Mid: {
-        hard: [
-          { text: "Full-cycle sales (prospecting → close)", req: true },
-          { text: "Multi-stakeholder deal management", req: true },
-          { text: "Negotiation and contract management", req: true },
-          { text: "Sales forecasting accuracy", req: true },
-          { text: "Demo and presentation delivery", req: true },
-          { text: "Territory or vertical planning", req: false },
-        ],
-        soft: [
-          { text: "Executive-level relationship building (remote)", req: true },
-          { text: "Disciplined pipeline management without micromanagement", req: true },
-          { text: "Strong time management across time zones", req: true },
-        ],
-        tools: [
-          { text: "Salesforce (advanced: forecasting, pipeline views)", req: true },
-          { text: "Outreach, Salesloft, or Apollo", req: false },
-          { text: "Gong or Chorus call recording and analysis", req: false },
-          { text: "Slack for buyer follow-up and internal comms", req: false },
-        ],
-        experience: [
-          { text: "3–6 years AE or sales experience", req: true },
-          { text: "Documented quota attainment history", req: true },
-          { text: "Closed deals in a remote-only environment", req: false },
-        ],
-      },
-      Senior: {
-        hard: [
-          { text: "Enterprise/strategic account management", req: true },
-          { text: "Complex deal structures and procurement navigation", req: true },
-          { text: "Revenue forecasting at team/regional level", req: true },
-          { text: "Land-and-expand account growth strategy", req: false },
-          { text: "Partner and channel sales experience", req: false },
-        ],
-        soft: [
-          { text: "C-suite executive selling skills", req: true },
-          { text: "Mentoring junior AEs and reps", req: false },
-          { text: "Sales process improvement contributions", req: false },
-          { text: "Resilient mindset with long-cycle deals", req: true },
-        ],
-        tools: [
-          { text: "Enterprise CRM (SFDC advanced or SAP CX)", req: true },
-          { text: "Sales intelligence platforms (ZoomInfo, 6sense)", req: false },
-          { text: "Digital deal room / proposal tools", req: false },
-        ],
-        experience: [
-          { text: "7+ years with consistent quota attainment", req: true },
-          { text: "Experience with $100k+ deals", req: true },
-          { text: "Remote-only enterprise sales track record", req: false },
-        ],
-      }
-    },
-    redFlags: [
-      "Cannot provide quota attainment numbers or metrics",
-      "No CRM experience or very poor pipeline hygiene history",
-      "Struggles to describe a lost deal and lessons learned",
-      "Requires heavy micromanagement or daily check-ins",
-      "No outbound prospecting experience (for hunter roles)"
-    ]
-  },
-
-  "customer-service-rep": {
-    title: "Customer Service Representative",
+  "customer-service": {
+    title: "Customer Service Rep",
     cat: "cs",
     icon: "ti-headset",
-    tagline: "Handles customer inquiries, resolves issues, and delivers exceptional support across chat, email, and phone in a remote environment.",
-    salary: "$28k–$55k",
+    tagline: "Handles customer inquiries across chat, email, and phone for US businesses — remote, on US hours.",
+    salary: "$700–$1,500/mo",
     demand: "High",
-    remote: "Fully Remote",
-    baseline: ["Empathy", "Clear written communication", "Patience", "Problem resolution", "Self-discipline", "Tech comfort"],
+    remote: "Fully Remote · US Hours",
+    baseline: ["Reliable internet & quiet space", "US EST/CST hours", "Clear spoken & written English", "Empathy & patience", "Self-discipline at home", "Tech comfort"],
     levels: {
       Junior: {
         hard: [
-          { text: "Typing speed 40+ WPM with accuracy", req: true },
-          { text: "Comfortable with phone, email, and live chat", req: true },
-          { text: "Basic troubleshooting and issue resolution", req: true },
-          { text: "Data entry and accurate record-keeping", req: true },
-          { text: "Knowledge of escalation procedures", req: false },
+          { text: "Handle phone, email, and live chat support", req: true },
+          { text: "Clear spoken English with confident phone presence", req: true },
+          { text: "Basic troubleshooting & issue resolution", req: true },
+          { text: "Accurate data entry / record-keeping", req: true },
+          { text: "Typing 40+ WPM", req: false },
         ],
         soft: [
-          { text: "Empathy and patience with frustrated customers", req: true },
-          { text: "Clear, professional tone in writing and speech", req: true },
+          { text: "Empathy & patience with upset customers", req: true },
+          { text: "Professional tone in writing and speech", req: true },
           { text: "Self-disciplined working from home", req: true },
-          { text: "Positive attitude and resilience", req: true },
+          { text: "Positive, resilient attitude", req: true },
         ],
         tools: [
-          { text: "Zendesk, Freshdesk, or equivalent CRM", req: true },
-          { text: "VoIP phone system (Aircall, RingCentral)", req: false },
-          { text: "Google Workspace / Microsoft Office", req: true },
-          { text: "Live chat platforms (Intercom, LiveChat)", req: false },
+          { text: "A helpdesk / ticketing tool (Zendesk, Freshdesk)", req: true },
+          { text: "Google Workspace / Microsoft 365", req: true },
+          { text: "Live chat (Intercom, Drift) awareness", req: false },
         ],
         experience: [
-          { text: "High school diploma / GED minimum", req: true },
-          { text: "1+ years in any customer-facing role", req: false },
-          { text: "Dedicated home workspace with reliable internet", req: true },
+          { text: "Any prior customer-facing experience", req: true },
+          { text: "Dedicated home workspace + reliable internet", req: true },
         ],
       },
       Mid: {
         hard: [
-          { text: "Handling high-volume ticket queues (KPI-driven)", req: true },
-          { text: "Root cause identification and resolution", req: true },
-          { text: "Escalation management with empathy", req: true },
-          { text: "Upselling or retention techniques (if applicable)", req: false },
-          { text: "Knowledge base creation / FAQ contribution", req: false },
+          { text: "High-volume, KPI-driven ticket queues", req: true },
+          { text: "Root-cause resolution, not just first reply", req: true },
+          { text: "Empathetic escalation handling", req: true },
+          { text: "Fast ramp on a new product or service", req: true },
+          { text: "Knowledge base / FAQ contribution", req: false },
         ],
         soft: [
-          { text: "Consistent CSAT or NPS score attainment", req: true },
-          { text: "Ability to handle multiple channels simultaneously", req: true },
+          { text: "Consistent CSAT / NPS attainment", req: true },
+          { text: "Handles multiple channels at once", req: true },
           { text: "De-escalation expertise", req: true },
-          { text: "Proactive communication with team leads", req: false },
         ],
         tools: [
-          { text: "Zendesk (advanced: macros, triggers, reporting)", req: true },
-          { text: "CRM/order management systems", req: false },
-          { text: "Slack/Teams for team communication", req: true },
+          { text: "Zendesk / Freshdesk advanced (macros, triggers)", req: true },
+          { text: "CRM / order management systems", req: false },
+          { text: "Slack / Teams for team comms", req: true },
         ],
         experience: [
-          { text: "2–4 years in a customer service role", req: true },
-          { text: "Documented CSAT or customer satisfaction metrics", req: false },
-          { text: "Remote support experience preferred", req: false },
+          { text: "2–4 years in a support role", req: true },
+          { text: "Documented CSAT or satisfaction metrics", req: false },
+          { text: "Remote support experience", req: false },
         ],
       },
       Senior: {
         hard: [
-          { text: "CS team QA and performance monitoring", req: true },
-          { text: "SOP and knowledge base development", req: true },
-          { text: "Training and onboarding of new remote agents", req: true },
-          { text: "Escalation handling for VIP or high-value customers", req: true },
-          { text: "Reporting on team KPIs to management", req: false },
+          { text: "QA & performance monitoring for the team", req: true },
+          { text: "SOP and knowledge-base development", req: true },
+          { text: "Onboarding & training new remote agents", req: true },
+          { text: "VIP / high-value escalation ownership", req: true },
+          { text: "KPI reporting to client / management", req: false },
         ],
         soft: [
-          { text: "Coaching and mentoring CS agents", req: true },
-          { text: "Leading virtual team huddles effectively", req: true },
-          { text: "Process improvement mindset", req: true },
+          { text: "Coaching and mentoring agents", req: true },
+          { text: "Leads virtual team huddles", req: true },
+          { text: "Process-improvement mindset", req: true },
         ],
         tools: [
           { text: "Zendesk / Salesforce Service Cloud (admin level)", req: true },
-          { text: "Workforce management tools", req: false },
-          { text: "Analytics dashboards and reporting", req: false },
+          { text: "Reporting & analytics dashboards", req: false },
         ],
         experience: [
-          { text: "4+ years, including leadership or mentoring", req: true },
-          { text: "Track record of improving team CSAT or resolution time", req: false },
+          { text: "4+ years including leadership or mentoring", req: true },
+          { text: "Improved a team's CSAT or resolution time", req: false },
         ],
       }
     },
     redFlags: [
-      "Slow or unprofessional written communication style",
-      "No reliable internet or quiet dedicated workspace",
-      "History of poor attendance or inconsistent availability",
-      "Unable to describe how they handled an angry customer",
-      "No experience with any support ticketing platform"
+      "Slow or unprofessional written communication",
+      "No reliable internet or quiet workspace",
+      "History of poor attendance / inconsistent availability",
+      "Can't describe how they handled an angry customer",
+      "No experience with any ticketing platform"
     ]
   },
 
-  "digital-marketing-manager": {
-    title: "Digital Marketing Manager",
-    cat: "marketing",
-    icon: "ti-speakerphone",
-    tagline: "Plans and executes multi-channel digital campaigns, manages brand presence, and drives measurable growth for remote-first businesses.",
-    salary: "$60k–$120k",
+  "sdr": {
+    title: "Sales Development Rep (SDR)",
+    cat: "sales",
+    icon: "ti-phone-call",
+    tagline: "Generates pipeline for US companies through outbound calls, email, and LinkedIn — remote, on US hours.",
+    salary: "$900–$2,000/mo + commission",
     demand: "High",
-    remote: "Fully Remote",
-    baseline: ["Data-driven thinking", "Campaign execution", "SEO/SEM basics", "Content strategy", "Analytics", "Cross-channel coordination"],
+    remote: "Fully Remote · US Hours",
+    baseline: ["Reliable internet & quiet call space", "100% US EST/CST hours", "Polished spoken English", "Comfortable with rejection", "CRM discipline", "Goal-oriented"],
     levels: {
       Junior: {
         hard: [
-          { text: "Social media management (scheduling, copy, engagement)", req: true },
-          { text: "Basic SEO understanding (on-page, keywords)", req: true },
-          { text: "Email marketing creation (Mailchimp, Klaviyo)", req: true },
-          { text: "Canva or basic visual content creation", req: false },
-          { text: "Google Analytics 4 basics", req: true },
+          { text: "Outbound prospecting (cold calls, email, LinkedIn)", req: true },
+          { text: "Write a clear cold email from scratch", req: true },
+          { text: "CRM data entry & hygiene", req: true },
+          { text: "Basic objection handling", req: true },
+          { text: "Research a prospect before outreach", req: false },
         ],
         soft: [
-          { text: "Creative and strong copywriting instincts", req: true },
-          { text: "Detail-oriented content scheduling and publishing", req: true },
-          { text: "Receptive to data and performance feedback", req: true },
-          { text: "Enthusiasm for brand storytelling", req: false },
+          { text: "High resilience — handles 'no' all day", req: true },
+          { text: "Confident, clear on the phone with US buyers", req: true },
+          { text: "Self-motivated without in-person oversight", req: true },
+          { text: "Coachable", req: true },
         ],
         tools: [
-          { text: "Hootsuite, Buffer, or similar social scheduler", req: false },
-          { text: "Google Analytics 4", req: true },
-          { text: "Mailchimp, Klaviyo, or HubSpot email", req: true },
-          { text: "WordPress or CMS management", req: false },
+          { text: "HubSpot or Salesforce CRM", req: true },
+          { text: "LinkedIn (Sales Navigator a plus)", req: false },
+          { text: "Dialer / VoIP tool", req: false },
         ],
         experience: [
-          { text: "Degree in marketing, comms, or related field OR portfolio", req: false },
-          { text: "1–2 years in marketing or content role", req: false },
+          { text: "Some outbound experience (calls, email, or LinkedIn)", req: true },
+          { text: "Any quota or target-driven role", req: false },
         ],
       },
       Mid: {
         hard: [
-          { text: "Paid ads management (Google Ads, Meta Ads)", req: true },
-          { text: "SEO strategy (on-page, technical, link-building)", req: true },
-          { text: "Campaign reporting and ROI analysis", req: true },
-          { text: "Multi-channel campaign coordination", req: true },
-          { text: "A/B testing and conversion optimization", req: false },
-          { text: "Marketing automation (HubSpot, Marketo)", req: false },
+          { text: "Consistent meeting / SQL quota attainment", req: true },
+          { text: "Multi-touch outbound sequences", req: true },
+          { text: "Qualify with a framework (BANT / MEDDIC basics)", req: true },
+          { text: "Handle layered objections live", req: true },
+          { text: "Book and run discovery calls", req: true },
+          { text: "Territory / list planning", req: false },
         ],
         soft: [
-          { text: "Data interpretation and actionable insight communication", req: true },
-          { text: "Project management for campaign timelines", req: true },
-          { text: "Cross-functional collaboration (sales, design, product)", req: true },
+          { text: "Disciplined pipeline management", req: true },
+          { text: "Strong time management across time zones", req: true },
+          { text: "Competitive, target-driven mindset", req: true },
         ],
         tools: [
-          { text: "Google Ads + Meta Ads Manager", req: true },
-          { text: "SEMrush, Ahrefs, or Moz", req: false },
-          { text: "HubSpot or Marketo", req: false },
-          { text: "Looker Studio or similar dashboard", req: false },
+          { text: "HubSpot / Salesforce (advanced)", req: true },
+          { text: "Sequencer (Outreach, Salesloft, Apollo)", req: true },
+          { text: "Call recording (Gong / Chorus) awareness", req: false },
         ],
         experience: [
-          { text: "3–5 years in digital marketing", req: true },
-          { text: "Google Ads or HubSpot certification preferred", req: false },
-          { text: "Managed an ad budget of $10k+/month", req: false },
+          { text: "2–4 years SDR/BDR or outbound sales", req: true },
+          { text: "Documented quota attainment", req: true },
+          { text: "Sold to US prospects remotely", req: false },
         ],
       },
       Senior: {
         hard: [
-          { text: "Full-funnel demand generation strategy", req: true },
-          { text: "Brand strategy and positioning", req: true },
-          { text: "Marketing budget ownership and allocation", req: true },
-          { text: "Omni-channel orchestration (paid, organic, email, content)", req: true },
-          { text: "Attribution modeling and CAC/LTV analysis", req: false },
-          { text: "Influencer or partner marketing", req: false },
+          { text: "Outbound playbook & messaging design", req: true },
+          { text: "Lead / coach a pod of SDRs", req: true },
+          { text: "Pipeline forecasting & reporting", req: true },
+          { text: "A/B testing sequences and channels", req: false },
+          { text: "Sales-ops / CRM workflow setup", req: false },
         ],
         soft: [
-          { text: "Executive reporting on marketing performance", req: true },
-          { text: "Mentoring and managing marketing team members", req: true },
-          { text: "Agile marketing process ownership", req: true },
+          { text: "Mentors and ramps new reps", req: true },
+          { text: "Owns team targets, not just personal", req: true },
+          { text: "Process-improvement contributions", req: true },
         ],
         tools: [
-          { text: "Enterprise marketing stack (Marketo, Salesforce Marketing Cloud)", req: false },
-          { text: "Advanced analytics (Tableau, Power BI)", req: false },
-          { text: "CDP or data enrichment platforms", req: false },
+          { text: "CRM + sequencer at admin level", req: true },
+          { text: "Sales intelligence (ZoomInfo, Apollo, 6sense)", req: false },
         ],
         experience: [
-          { text: "6+ years with measurable growth outcomes", req: true },
-          { text: "Led a team of at least 2 marketing professionals", req: false },
-          { text: "Managed $100k+ annual ad spend", req: false },
+          { text: "5+ years including team lead / senior SDR", req: true },
+          { text: "Built or scaled an outbound motion", req: false },
         ],
       }
     },
     redFlags: [
-      "No metrics or data to back up past campaigns",
-      "Unfamiliar with Google Analytics, Ads Manager, or any CMS",
-      "Cannot explain the difference between SEO and SEM",
-      "Portfolio or work samples are absent or outdated",
-      "No experience with email marketing or automation"
+      "Cannot share any quota or activity metrics",
+      "Weak or hesitant spoken English on a call",
+      "No CRM experience or poor pipeline hygiene",
+      "Takes rejection personally; low resilience",
+      "Won't commit to full US business hours"
     ]
   },
 
-  "medical-health-coordinator": {
-    title: "Medical / Health Coordinator",
-    cat: "health",
-    icon: "ti-stethoscope",
-    tagline: "Coordinates patient care, manages medical records, supports clinical workflows, and ensures regulatory compliance in telehealth and remote health settings.",
-    salary: "$40k–$80k",
+  "bookkeeper": {
+    title: "Bookkeeper",
+    cat: "finance",
+    icon: "ti-calculator",
+    tagline: "Keeps the books accurate for US small businesses — reconciliations, AP/AR, and reporting, fully remote.",
+    salary: "$1,000–$2,200/mo",
     demand: "High",
-    remote: "Hybrid–Fully Remote",
-    baseline: ["HIPAA compliance", "Attention to detail", "Empathy", "EHR proficiency", "Medical terminology", "Patient confidentiality"],
+    remote: "Fully Remote · US Hours",
+    baseline: ["Reliable internet & quiet space", "US EST/CST hours overlap", "Numerical accuracy", "Confidentiality", "Attention to detail", "Double-entry fundamentals"],
     levels: {
       Junior: {
         hard: [
-          { text: "HIPAA compliance knowledge and practice", req: true },
-          { text: "Medical terminology proficiency", req: true },
-          { text: "EHR data entry and basic navigation (Epic, Cerner)", req: true },
-          { text: "Appointment scheduling and patient communication", req: true },
-          { text: "Insurance verification basics", req: false },
+          { text: "Double-entry bookkeeping (debits & credits)", req: true },
+          { text: "One accounting platform (QuickBooks, Xero, Wave)", req: true },
+          { text: "Bank reconciliations", req: true },
+          { text: "AP / AR data entry", req: true },
+          { text: "Read a basic P&L statement", req: true },
+          { text: "Google Sheets / Excel for tracking", req: false },
         ],
         soft: [
-          { text: "Empathetic and calm with patients in distress", req: true },
-          { text: "Strong attention to detail for medical data accuracy", req: true },
-          { text: "Confidentiality and professionalism", req: true },
-          { text: "Reliable and consistent availability", req: true },
+          { text: "Meticulous attention to detail", req: true },
+          { text: "Meets deadlines independently", req: true },
+          { text: "Discretion with financial data", req: true },
         ],
         tools: [
-          { text: "EHR: Epic, Cerner, or Athenahealth", req: true },
-          { text: "Telehealth platforms (Doxy.me, Zoom for Healthcare)", req: false },
-          { text: "Microsoft Office / Google Workspace", req: true },
+          { text: "QuickBooks Online or Xero", req: true },
+          { text: "Google Sheets / Excel", req: true },
+          { text: "Receipt / expense capture tools", req: false },
         ],
         experience: [
-          { text: "Associate's or Bachelor's in Health Admin or related", req: false },
-          { text: "1+ years in healthcare or medical office setting", req: false },
-          { text: "Medical Office Certification (preferred)", req: false },
+          { text: "Some bookkeeping experience or coursework", req: true },
+          { text: "QBO or Xero certification (a plus)", req: false },
         ],
       },
       Mid: {
         hard: [
-          { text: "Prior authorization and insurance claims processing", req: true },
-          { text: "Medical coding basics (ICD-10, CPT)", req: false },
-          { text: "Care coordination across providers or departments", req: true },
-          { text: "HIPAA audit preparation", req: false },
-          { text: "Quality assurance on medical records", req: false },
+          { text: "Full-cycle monthly bookkeeping & close", req: true },
+          { text: "AP / AR management end-to-end", req: true },
+          { text: "Bank & credit card reconciliations at volume", req: true },
+          { text: "Financial statements (P&L, balance sheet)", req: true },
+          { text: "US sales tax / 1099 awareness", req: false },
+          { text: "Payroll coordination (Gusto, etc.)", req: false },
         ],
         soft: [
-          { text: "Proactive care coordination communication", req: true },
-          { text: "Diplomatic handling of insurance disputes or denials", req: true },
-          { text: "Strong written and verbal communication with clinical staff", req: true },
+          { text: "Proactively flags discrepancies", req: true },
+          { text: "Communicates clearly with non-finance clients", req: true },
+          { text: "Self-managed with minimal oversight", req: true },
         ],
         tools: [
-          { text: "Advanced EHR (Epic, Cerner — scheduling, billing modules)", req: true },
-          { text: "AdvancedMD or Kareo for billing", req: false },
-          { text: "Telehealth coordination platforms", req: false },
+          { text: "QuickBooks Online or Xero (certified)", req: true },
+          { text: "Bill.com / expense tools", req: false },
+          { text: "Payroll software (Gusto, ADP)", req: false },
         ],
         experience: [
-          { text: "3–5 years in healthcare coordination or admin", req: true },
-          { text: "Experience with remote patient management", req: false },
-          { text: "Coding certification (CPC, CCS) a plus", req: false },
+          { text: "3–5 years bookkeeping", req: true },
+          { text: "Managed books for US-based clients", req: false },
+          { text: "QBO ProAdvisor or Xero certified", req: false },
         ],
       },
       Senior: {
         hard: [
-          { text: "Revenue cycle management oversight", req: true },
-          { text: "Regulatory compliance management (CMS, state regs)", req: true },
-          { text: "Clinical operations workflow design", req: true },
-          { text: "Multi-provider coordination and scheduling optimization", req: false },
-          { text: "Data analysis for patient outcomes or utilization", req: false },
+          { text: "Manage books for multiple clients / entities", req: true },
+          { text: "Month-end close ownership & reporting packages", req: true },
+          { text: "Cash flow tracking & light forecasting", req: true },
+          { text: "Cleanup / catch-up engagements", req: true },
+          { text: "Process setup & app-stack integrations", req: false },
+          { text: "Light controller / advisory work", req: false },
         ],
         soft: [
-          { text: "Leadership of remote clinical admin teams", req: true },
-          { text: "Vendor and payer relationship management", req: true },
-          { text: "Change management in healthcare workflow transitions", req: false },
+          { text: "Client-facing confidence and trust", req: true },
+          { text: "Reviews and mentors junior bookkeepers", req: true },
+          { text: "Owns accuracy across a book of business", req: true },
         ],
         tools: [
-          { text: "EHR administration and configuration", req: true },
-          { text: "Healthcare analytics tools", req: false },
-          { text: "Compliance tracking software", req: false },
+          { text: "QuickBooks Online + Xero (both certified ideal)", req: true },
+          { text: "Bill.com, Gusto, and reporting tools", req: false },
         ],
         experience: [
-          { text: "6+ years in healthcare admin, operations, or coordination", req: true },
-          { text: "RHIA, RHIT, or CHDA certification preferred", req: false },
-          { text: "Managed a remote healthcare operations team", req: false },
+          { text: "5+ years including multi-client management", req: true },
+          { text: "Led or reviewed others' work", req: false },
         ],
       }
     },
     redFlags: [
-      "Vague on HIPAA knowledge or confidentiality practices",
-      "No EHR software experience",
-      "Unable to describe how they handled a medical records discrepancy",
-      "Poor communication style with clinical or patient populations",
-      "No awareness of telehealth-specific workflows"
-    ]
-  },
-
-  "operations-manager": {
-    title: "Operations Manager",
-    cat: "ops",
-    icon: "ti-settings",
-    tagline: "Manages day-to-day business operations, optimizes processes, and ensures organizational efficiency in distributed work environments.",
-    salary: "$65k–$130k",
-    demand: "High",
-    remote: "Fully Remote",
-    baseline: ["Process documentation", "Cross-functional leadership", "Data-driven decisions", "Systems thinking", "Vendor management", "Async team management"],
-    levels: {
-      Junior: {
-        hard: [
-          { text: "Process documentation and SOP creation", req: true },
-          { text: "Basic project coordination", req: true },
-          { text: "Data collection and reporting basics", req: true },
-          { text: "Vendor or supplier coordination", req: false },
-          { text: "Budget tracking support", req: false },
-        ],
-        soft: [
-          { text: "Highly organized with strong follow-through", req: true },
-          { text: "Proactive problem-solver", req: true },
-          { text: "Clear communicator across teams", req: true },
-          { text: "Comfortable with ambiguity in fast-paced orgs", req: false },
-        ],
-        tools: [
-          { text: "Google Workspace / Microsoft 365", req: true },
-          { text: "Notion, Confluence, or equivalent for SOPs", req: false },
-          { text: "Asana, Monday.com, or Trello", req: true },
-        ],
-        experience: [
-          { text: "1–3 years in an operations or admin support role", req: true },
-          { text: "Exposure to process improvement projects", req: false },
-        ],
-      },
-      Mid: {
-        hard: [
-          { text: "End-to-end process optimization and redesign", req: true },
-          { text: "KPI/OKR tracking and reporting", req: true },
-          { text: "Cross-functional team coordination", req: true },
-          { text: "Contract and vendor management", req: true },
-          { text: "Operational risk identification and mitigation", req: false },
-          { text: "Hiring process support (interviews, onboarding)", req: false },
-        ],
-        soft: [
-          { text: "Ability to influence without formal authority", req: true },
-          { text: "Drives accountability across remote departments", req: true },
-          { text: "Comfortable presenting operational updates to leadership", req: true },
-        ],
-        tools: [
-          { text: "Advanced project management tools (Asana, Monday, ClickUp)", req: true },
-          { text: "Data analysis: Excel/Sheets (pivot tables, reporting)", req: true },
-          { text: "HRIS or ATS awareness (Workday, Greenhouse)", req: false },
-          { text: "Slack/Teams for async team management", req: true },
-        ],
-        experience: [
-          { text: "4–7 years in an operations role", req: true },
-          { text: "Led at least one cross-functional initiative", req: true },
-          { text: "Remote team management experience", req: false },
-        ],
-      },
-      Senior: {
-        hard: [
-          { text: "Organizational design and operational scaling", req: true },
-          { text: "Strategic planning and roadmap development", req: true },
-          { text: "Enterprise vendor negotiations", req: true },
-          { text: "Business continuity planning", req: false },
-          { text: "P&L or budget ownership", req: false },
-          { text: "Lean / Six Sigma or equivalent process methodology", req: false },
-        ],
-        soft: [
-          { text: "Executive-level influence and communication", req: true },
-          { text: "Leading and developing ops managers and teams", req: true },
-          { text: "Cultural carrier for remote-first operations", req: true },
-        ],
-        tools: [
-          { text: "ERP platforms (NetSuite, SAP, Oracle)", req: false },
-          { text: "Advanced analytics and BI tools", req: false },
-          { text: "Enterprise project governance tools", req: false },
-        ],
-        experience: [
-          { text: "8+ years, with 2+ years in management", req: true },
-          { text: "Built or scaled a remote operations function", req: false },
-          { text: "MBA or equivalent operational leadership credential", req: false },
-        ],
-      }
-    },
-    redFlags: [
-      "No examples of a process they improved or built from scratch",
-      "Reactive rather than proactive management style",
-      "Unable to describe how they manage distributed teams",
-      "No experience with documentation or SOP creation",
-      "Poor data literacy — cannot interpret basic operational metrics"
+      "Can't explain a reconciliation they fixed",
+      "No hands-on QuickBooks or Xero experience",
+      "Shaky on debits vs credits / double-entry",
+      "Careless with numbers or documentation",
+      "Vague about confidentiality with financials"
     ]
   }
 };
@@ -1148,7 +734,7 @@ let currentCat = "all";
 let checkedItems = {};
 
 function getCheckKey(roleId, section, idx) {
-  return `${roleId}-${section}-${idx}`;
+  return `${roleId}-${currentLevel}-${section}-${idx}`;
 }
 
 function renderNav(filter = "", cat = "all") {

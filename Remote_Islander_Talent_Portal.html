@@ -357,12 +357,86 @@
   .cta-btn:hover { background: var(--teal-light); }
   .cta-note { margin-top: 14px; font-size: 12px; color: rgba(255,255,255,0.4); }
 
+  /* APPLICATION FORM */
+  .apply-section { padding: 8px 0 64px; scroll-margin-top: 24px; }
+  .apply-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 36px 40px;
+    box-shadow: 0 6px 30px rgba(13,110,110,0.08);
+  }
+  .apply-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .apply-card .apply-intro { font-size: 14px; color: rgba(26,20,16,0.6); margin-bottom: 26px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field.full { grid-column: 1 / -1; }
+  .field label { font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--ink); }
+  .field label .req { color: var(--coral); }
+  .field input, .field select, .field textarea {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    padding: 11px 13px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--sand);
+    transition: border-color 0.15s, box-shadow 0.15s;
+    width: 100%;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(13,110,110,0.12);
+    background: var(--white);
+  }
+  .field textarea { resize: vertical; min-height: 92px; }
+  .field-hint { font-size: 11.5px; color: rgba(26,20,16,0.45); }
+  .apply-readiness {
+    grid-column: 1 / -1;
+    background: var(--mist);
+    border: 1px solid rgba(13,110,110,0.18);
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-size: 13px;
+    color: #0A4A4A;
+  }
+  .apply-actions { grid-column: 1 / -1; display: flex; align-items: center; gap: 16px; margin-top: 6px; flex-wrap: wrap; }
+  .apply-submit {
+    background: var(--teal); color: var(--white); border: none;
+    font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600;
+    padding: 14px 34px; border-radius: 8px; cursor: pointer; transition: background 0.2s;
+  }
+  .apply-submit:hover { background: var(--teal-light); }
+  .apply-submit:disabled { opacity: 0.6; cursor: default; }
+  .apply-note { font-size: 12px; color: rgba(26,20,16,0.5); }
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .form-success.show { display: block; }
+  .form-success .tick {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--teal); color: #fff; font-size: 28px;
+    display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px;
+  }
+  .form-success h3 { font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 8px; }
+  .form-success p { color: rgba(26,20,16,0.6); font-size: 14px; }
+
   @media (max-width: 600px) {
     .hero { padding: 56px 24px 50px; }
     .intro-strip { gap: 28px; padding: 24px; }
     .section { padding: 48px 0 32px; }
     .cta-block { padding: 36px 24px; }
     .resource-grid { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .apply-card { padding: 26px 22px 30px; }
   }
 </style>
 </head>
@@ -500,11 +574,11 @@
             <p>Official Google training for Gmail, Calendar, Drive, Docs, and Sheets. Self-paced.</p>
             <span class="resource-arrow">→ grow.google</span>
           </a>
-          <a class="resource-card" href="https://asana.com/academy" target="_blank" rel="noopener">
+          <a class="resource-card" href="https://academy.asana.com/" target="_blank" rel="noopener">
             <span class="resource-tag tag-cert">Free Cert</span>
             <h4>Asana Academy</h4>
             <p>Free official Asana product certification. Earnable in a few hours online.</p>
-            <span class="resource-arrow">→ asana.com/academy</span>
+            <span class="resource-arrow">→ academy.asana.com</span>
           </a>
           <a class="resource-card" href="https://www.notion.so/learn" target="_blank" rel="noopener">
             <span class="resource-tag tag-video">Videos</span>
@@ -512,7 +586,7 @@
             <p>Notion's official tutorials and templates. Great for beginners to build confidence fast.</p>
             <span class="resource-arrow">→ notion.so/learn</span>
           </a>
-          <a class="resource-card" href="https://academy.hubspot.com/courses/hubspot-crm" target="_blank" rel="noopener">
+          <a class="resource-card" href="https://academy.hubspot.com/courses/set-up-your-hubspot-crm-for-growth" target="_blank" rel="noopener">
             <span class="resource-tag tag-cert">Free Cert</span>
             <h4>HubSpot CRM Basics</h4>
             <p>Free HubSpot Academy course. Learn CRM fundamentals — useful for any admin role.</p>
@@ -623,10 +697,10 @@
             <p>Official free training from Freshworks. Covers Freshdesk support tools and agent best practices.</p>
             <span class="resource-arrow">→ freshworks.com/university</span>
           </a>
-          <a class="resource-card" href="https://academy.hubspot.com/courses/delivering-exceptional-customer-experiences" target="_blank" rel="noopener">
+          <a class="resource-card" href="https://academy.hubspot.com/courses/delivering-exceptional-customer-support" target="_blank" rel="noopener">
             <span class="resource-tag tag-cert">Free Cert</span>
-            <h4>HubSpot: Customer Experience</h4>
-            <p>Free HubSpot certification on delivering exceptional customer experiences. Looks great on a resume.</p>
+            <h4>HubSpot: Customer Support</h4>
+            <p>Free HubSpot certification on delivering exceptional customer support. Looks great on a resume.</p>
             <span class="resource-arrow">→ academy.hubspot.com</span>
           </a>
           <a class="resource-card" href="https://grow.google/intl/en_us/courses-and-tools/" target="_blank" rel="noopener">
@@ -903,11 +977,107 @@
     <p class="cta-note">Applications are reviewed by our Trinidad-based talent team. No placement fees — ever.</p>
   </div>
 
+  <!-- APPLICATION FORM -->
+  <div class="apply-section" id="apply">
+    <div class="apply-card">
+      <form id="applyForm" novalidate>
+        <h2>Apply to Join the Network</h2>
+        <p class="apply-intro">Fill this out honestly. There are no placement fees, ever — and we respond to every applicant within 5 business days.</p>
+        <div class="form-grid">
+          <div class="field">
+            <label for="f-name">Full name <span class="req">*</span></label>
+            <input type="text" id="f-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-email">Email <span class="req">*</span></label>
+            <input type="email" id="f-email" name="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="f-whatsapp">WhatsApp / phone <span class="req">*</span></label>
+            <input type="tel" id="f-whatsapp" name="whatsapp" autocomplete="tel" required>
+          </div>
+          <div class="field">
+            <label for="f-country">Country <span class="req">*</span></label>
+            <input type="text" id="f-country" name="country" placeholder="e.g. Trinidad &amp; Tobago" required>
+          </div>
+          <div class="field">
+            <label for="f-role">Role you're applying for <span class="req">*</span></label>
+            <select id="f-role" name="role" required>
+              <option value="" disabled selected>Select a role…</option>
+              <option value="EA / Virtual Assistant">EA / Virtual Assistant</option>
+              <option value="Customer Service">Customer Service</option>
+              <option value="SDR (Sales)">SDR (Sales)</option>
+              <option value="Bookkeeper">Bookkeeper</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-experience">Years of relevant experience <span class="req">*</span></label>
+            <select id="f-experience" name="experience" required>
+              <option value="" disabled selected>Select…</option>
+              <option value="Less than 1 year">Less than 1 year</option>
+              <option value="1–2 years">1–2 years</option>
+              <option value="3–5 years">3–5 years</option>
+              <option value="6+ years">6+ years</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-internet">Internet download speed <span class="req">*</span></label>
+            <input type="text" id="f-internet" name="internet_speed" placeholder="e.g. 60 Mbps" required>
+            <span class="field-hint">Test at fast.com if unsure — 25+ Mbps required.</span>
+          </div>
+          <div class="field">
+            <label for="f-hours">Can you work US EST/CST hours? <span class="req">*</span></label>
+            <select id="f-hours" name="us_hours" required>
+              <option value="" disabled selected>Select…</option>
+              <option value="Yes — full 9am–5pm EST/CST">Yes — full 9am–5pm EST/CST</option>
+              <option value="Partial overlap only">Partial overlap only</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="f-link">LinkedIn or résumé link</label>
+            <input type="url" id="f-link" name="profile_link" placeholder="https://">
+          </div>
+          <div class="field full">
+            <label for="f-message">Anything else we should know?</label>
+            <textarea id="f-message" name="message" placeholder="Certifications completed, relevant tools, availability to start…"></textarea>
+          </div>
+          <div class="apply-readiness" id="applyReadiness">Your self-assessment score will be attached automatically when you submit.</div>
+          <div class="apply-actions">
+            <button type="submit" class="apply-submit" id="applySubmit">Submit Application →</button>
+            <span class="apply-note">We never charge applicants. Reviewed by our Trinidad-based team.</span>
+          </div>
+        </div>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="tick">✓</div>
+        <h3>Application received</h3>
+        <p>Thanks — we've got your details and will be in touch within 5 business days.</p>
+      </div>
+    </div>
+  </div>
+
 </div><!-- /container -->
 
 <script>
+  // ===== CONFIG: where applications are sent =====
+  // To send applications to your inbox automatically, create a free form at
+  // https://formspree.io and paste its endpoint below (e.g. "https://formspree.io/f/abcdwxyz").
+  // If left blank, the form falls back to opening the applicant's email client (mailto).
+  const APPLY_CONFIG = {
+    FORMSPREE_ENDPOINT: "",
+    CONTACT_EMAIL: "robert@robofreelance.com"
+  };
+
   const counts = { va: 0, csr: 0, sdr: 0, bk: 0 };
   const totals = { va: 13, csr: 12, sdr: 13, bk: 13 };
+  const ROLE_LABEL = {
+    va: "EA / Virtual Assistant",
+    csr: "Customer Service",
+    sdr: "SDR (Sales)",
+    bk: "Bookkeeper"
+  };
+  let activeRole = 'va';
 
   function toggleCheck(el, role) {
     el.classList.toggle('checked');
@@ -915,8 +1085,12 @@
     updateProgress(role);
   }
 
+  function readiness(role) {
+    return Math.round((counts[role] / totals[role]) * 100);
+  }
+
   function updateProgress(role) {
-    const pct = Math.round((counts[role] / totals[role]) * 100);
+    const pct = readiness(role);
     document.getElementById(`prog-${role}`).style.width = pct + '%';
     document.getElementById(`pct-${role}`).textContent = pct + '%';
 
@@ -928,6 +1102,8 @@
     if (pct < 50) low.classList.add('show');
     else if (pct < 80) mid.classList.add('show');
     else high.classList.add('show');
+
+    if (role === activeRole) refreshApplyPrefill();
   }
 
   function switchTab(role, btn) {
@@ -935,7 +1111,74 @@
     document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
     document.getElementById('tab-' + role).classList.add('active');
     btn.classList.add('active');
+    activeRole = role;
+    refreshApplyPrefill();
   }
+
+  // Keep the application form's role + readiness in sync with the active tab.
+  function refreshApplyPrefill() {
+    const roleSelect = document.getElementById('f-role');
+    if (roleSelect && !roleSelect.value) roleSelect.value = ROLE_LABEL[activeRole];
+    const r = document.getElementById('applyReadiness');
+    if (r) {
+      const pct = readiness(activeRole);
+      r.textContent = `Self-assessment: ${ROLE_LABEL[activeRole]} — ${pct}% ready. This score is attached automatically when you submit.`;
+    }
+  }
+
+  // ===== Application submission =====
+  function handleApplySubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('applyForm');
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    const data = Object.fromEntries(new FormData(form).entries());
+    data.self_assessment = `${data.role || ROLE_LABEL[activeRole]}: ${readiness(activeRole)}% ready`;
+    data.submitted_at = new Date().toISOString();
+
+    const btn = document.getElementById('applySubmit');
+    btn.disabled = true;
+
+    const showSuccess = () => {
+      form.style.display = 'none';
+      document.getElementById('formSuccess').classList.add('show');
+      document.getElementById('apply').scrollIntoView({ behavior: 'smooth' });
+    };
+
+    if (APPLY_CONFIG.FORMSPREE_ENDPOINT) {
+      fetch(APPLY_CONFIG.FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(res => { if (!res.ok) throw new Error('Submission failed'); showSuccess(); })
+        .catch(() => { btn.disabled = false; alert('Something went wrong submitting. Please email us at ' + APPLY_CONFIG.CONTACT_EMAIL); });
+    } else {
+      // No backend configured — fall back to the applicant's email client.
+      const lines = [
+        `Name: ${data.name}`,
+        `Email: ${data.email}`,
+        `WhatsApp/phone: ${data.whatsapp}`,
+        `Country: ${data.country}`,
+        `Role: ${data.role}`,
+        `Experience: ${data.experience}`,
+        `Internet: ${data.internet_speed}`,
+        `US hours: ${data.us_hours}`,
+        `Profile link: ${data.profile_link || '—'}`,
+        `Self-assessment: ${data.self_assessment}`,
+        ``,
+        `Message:`,
+        `${data.message || '—'}`
+      ].join('\n');
+      const subject = encodeURIComponent(`Talent Network Application — ${data.name} (${data.role})`);
+      const body = encodeURIComponent(lines);
+      window.location.href = `mailto:${APPLY_CONFIG.CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+      showSuccess();
+    }
+  }
+
+  document.getElementById('applyForm').addEventListener('submit', handleApplySubmit);
+  refreshApplyPrefill();
 </script>
 </body>
 </html>
