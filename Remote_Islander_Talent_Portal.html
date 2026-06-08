@@ -977,78 +977,21 @@
     <p class="cta-note">Applications are reviewed by our Trinidad-based talent team. No placement fees — ever.</p>
   </div>
 
-  <!-- APPLICATION FORM -->
+  <!-- APPLICATION FORM (HubSpot embed) -->
   <div class="apply-section" id="apply">
     <div class="apply-card">
-      <form id="applyForm" novalidate>
-        <h2>Apply to Join the Network</h2>
-        <p class="apply-intro">Fill this out honestly. There are no placement fees, ever — and we respond to every applicant within 5 business days.</p>
-        <div class="form-grid">
-          <div class="field">
-            <label for="f-name">Full name <span class="req">*</span></label>
-            <input type="text" id="f-name" name="name" autocomplete="name" required>
-          </div>
-          <div class="field">
-            <label for="f-email">Email <span class="req">*</span></label>
-            <input type="email" id="f-email" name="email" autocomplete="email" required>
-          </div>
-          <div class="field">
-            <label for="f-whatsapp">WhatsApp / phone <span class="req">*</span></label>
-            <input type="tel" id="f-whatsapp" name="whatsapp" autocomplete="tel" required>
-          </div>
-          <div class="field">
-            <label for="f-country">Country <span class="req">*</span></label>
-            <input type="text" id="f-country" name="country" placeholder="e.g. Trinidad &amp; Tobago" required>
-          </div>
-          <div class="field">
-            <label for="f-role">Role you're applying for <span class="req">*</span></label>
-            <select id="f-role" name="role" required>
-              <option value="" disabled selected>Select a role…</option>
-              <option value="EA / Virtual Assistant">EA / Virtual Assistant</option>
-              <option value="Customer Service">Customer Service</option>
-              <option value="SDR (Sales)">SDR (Sales)</option>
-              <option value="Bookkeeper">Bookkeeper</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="f-experience">Years of relevant experience <span class="req">*</span></label>
-            <select id="f-experience" name="experience" required>
-              <option value="" disabled selected>Select…</option>
-              <option value="Less than 1 year">Less than 1 year</option>
-              <option value="1–2 years">1–2 years</option>
-              <option value="3–5 years">3–5 years</option>
-              <option value="6+ years">6+ years</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="f-internet">Internet download speed <span class="req">*</span></label>
-            <input type="text" id="f-internet" name="internet_speed" placeholder="e.g. 60 Mbps" required>
-            <span class="field-hint">Test at fast.com if unsure — 25+ Mbps required.</span>
-          </div>
-          <div class="field">
-            <label for="f-hours">Can you work US EST/CST hours? <span class="req">*</span></label>
-            <select id="f-hours" name="us_hours" required>
-              <option value="" disabled selected>Select…</option>
-              <option value="Yes — full 9am–5pm EST/CST">Yes — full 9am–5pm EST/CST</option>
-              <option value="Partial overlap only">Partial overlap only</option>
-              <option value="No">No</option>
-            </select>
-          </div>
-          <div class="field full">
-            <label for="f-link">LinkedIn or résumé link</label>
-            <input type="url" id="f-link" name="profile_link" placeholder="https://">
-          </div>
-          <div class="field full">
-            <label for="f-message">Anything else we should know?</label>
-            <textarea id="f-message" name="message" placeholder="Certifications completed, relevant tools, availability to start…"></textarea>
-          </div>
-          <div class="apply-readiness" id="applyReadiness">Your self-assessment score will be attached automatically when you submit.</div>
-          <div class="apply-actions">
-            <button type="submit" class="apply-submit" id="applySubmit">Submit Application →</button>
-            <span class="apply-note">We never charge applicants. Reviewed by our Trinidad-based team.</span>
-          </div>
-        </div>
-      </form>
+      <h2>Apply to Join the Network</h2>
+      <p class="apply-intro">Fill this out honestly. There are no placement fees, ever — and we respond to every applicant within 5 business days.</p>
+      <div class="apply-readiness" id="applyReadiness">Your self-assessment score is attached automatically when you submit.</div>
+      <!--
+        HubSpot form renders here. Account/portal: 246255059 · region: na2.
+        Build the form in HubSpot (field spec in docs/hubspot-application-form-spec.md),
+        then set HS.formId below to its Form GUID. In WordPress, the form kit block /
+        shortcode [hubspot type="form" portal="246255059" id="FORM_GUID"] embeds the same form.
+      -->
+      <div id="hubspotApplyForm">
+        <p class="field-hint">The HubSpot application form will appear here once connected.</p>
+      </div>
       <div class="form-success" id="formSuccess">
         <div class="tick">✓</div>
         <h3>Application received</h3>
@@ -1059,14 +1002,18 @@
 
 </div><!-- /container -->
 
+<!-- HubSpot forms embed loader -->
+<script src="https://js.hsforms.net/forms/embed/v2.js"></script>
 <script>
-  // ===== CONFIG: where applications are sent =====
-  // To send applications to your inbox automatically, create a free form at
-  // https://formspree.io and paste its endpoint below (e.g. "https://formspree.io/f/abcdwxyz").
-  // If left blank, the form falls back to opening the applicant's email client (mailto).
-  const APPLY_CONFIG = {
-    FORMSPREE_ENDPOINT: "",
-    CONTACT_EMAIL: "robert@robofreelance.com"
+  // ===== HubSpot application form =====
+  // Account/portal: 246255059 · region: na2 (app-na2.hubspot.com).
+  // 1. Build the form in HubSpot using docs/hubspot-application-form-spec.md
+  // 2. Paste its Form GUID below. The self-assessment score is written into the
+  //    hidden "self_assessment_readiness" field automatically on form load.
+  const HS = {
+    region: "na2",
+    portalId: "246255059",
+    formId: "REPLACE_WITH_FORM_GUID"
   };
 
   const counts = { va: 0, csr: 0, sdr: 0, bk: 0 };
@@ -1103,7 +1050,7 @@
     else if (pct < 80) mid.classList.add('show');
     else high.classList.add('show');
 
-    if (role === activeRole) refreshApplyPrefill();
+    if (role === activeRole) syncReadinessField();
   }
 
   function switchTab(role, btn) {
@@ -1112,73 +1059,45 @@
     document.getElementById('tab-' + role).classList.add('active');
     btn.classList.add('active');
     activeRole = role;
-    refreshApplyPrefill();
+    syncReadinessField();
   }
 
-  // Keep the application form's role + readiness in sync with the active tab.
-  function refreshApplyPrefill() {
-    const roleSelect = document.getElementById('f-role');
-    if (roleSelect && !roleSelect.value) roleSelect.value = ROLE_LABEL[activeRole];
-    const r = document.getElementById('applyReadiness');
-    if (r) {
-      const pct = readiness(activeRole);
-      r.textContent = `Self-assessment: ${ROLE_LABEL[activeRole]} — ${pct}% ready. This score is attached automatically when you submit.`;
+  // Show the live self-assessment score, and write it into the embedded
+  // HubSpot form's hidden "self_assessment_readiness" field when present.
+  function syncReadinessField() {
+    const pct = readiness(activeRole);
+    const note = document.getElementById('applyReadiness');
+    if (note) {
+      note.textContent = `Self-assessment: ${ROLE_LABEL[activeRole]} — ${pct}% ready. This is attached automatically when you submit.`;
     }
+    const input = document.querySelector('#hubspotApplyForm input[name="self_assessment_readiness"]');
+    if (input) input.value = `${ROLE_LABEL[activeRole]} — ${pct}% ready`;
   }
 
-  // ===== Application submission =====
-  function handleApplySubmit(e) {
-    e.preventDefault();
-    const form = document.getElementById('applyForm');
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-
-    const data = Object.fromEntries(new FormData(form).entries());
-    data.self_assessment = `${data.role || ROLE_LABEL[activeRole]}: ${readiness(activeRole)}% ready`;
-    data.submitted_at = new Date().toISOString();
-
-    const btn = document.getElementById('applySubmit');
-    btn.disabled = true;
-
-    const showSuccess = () => {
-      form.style.display = 'none';
-      document.getElementById('formSuccess').classList.add('show');
-      document.getElementById('apply').scrollIntoView({ behavior: 'smooth' });
-    };
-
-    if (APPLY_CONFIG.FORMSPREE_ENDPOINT) {
-      fetch(APPLY_CONFIG.FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      })
-        .then(res => { if (!res.ok) throw new Error('Submission failed'); showSuccess(); })
-        .catch(() => { btn.disabled = false; alert('Something went wrong submitting. Please email us at ' + APPLY_CONFIG.CONTACT_EMAIL); });
-    } else {
-      // No backend configured — fall back to the applicant's email client.
-      const lines = [
-        `Name: ${data.name}`,
-        `Email: ${data.email}`,
-        `WhatsApp/phone: ${data.whatsapp}`,
-        `Country: ${data.country}`,
-        `Role: ${data.role}`,
-        `Experience: ${data.experience}`,
-        `Internet: ${data.internet_speed}`,
-        `US hours: ${data.us_hours}`,
-        `Profile link: ${data.profile_link || '—'}`,
-        `Self-assessment: ${data.self_assessment}`,
-        ``,
-        `Message:`,
-        `${data.message || '—'}`
-      ].join('\n');
-      const subject = encodeURIComponent(`Talent Network Application — ${data.name} (${data.role})`);
-      const body = encodeURIComponent(lines);
-      window.location.href = `mailto:${APPLY_CONFIG.CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-      showSuccess();
+  // ===== Render the HubSpot application form =====
+  function createHubspotForm() {
+    const target = document.getElementById('hubspotApplyForm');
+    if (!window.hbspt || !HS.formId || HS.formId.indexOf('REPLACE') === 0) {
+      // Not connected yet — leave the placeholder note in place.
+      return;
     }
+    target.innerHTML = '';
+    hbspt.forms.create({
+      region: HS.region,
+      portalId: HS.portalId,
+      formId: HS.formId,
+      target: '#hubspotApplyForm',
+      onFormReady: function () { syncReadinessField(); },
+      onFormSubmitted: function () {
+        target.style.display = 'none';
+        document.getElementById('applyReadiness').style.display = 'none';
+        document.getElementById('formSuccess').classList.add('show');
+      }
+    });
   }
 
-  document.getElementById('applyForm').addEventListener('submit', handleApplySubmit);
-  refreshApplyPrefill();
+  window.addEventListener('load', createHubspotForm);
+  syncReadinessField();
 </script>
 </body>
 </html>
