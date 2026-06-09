@@ -96,6 +96,25 @@
   .btn-primary:hover { filter: brightness(1.1); }
   .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
   .btn-outline:hover { background: var(--gray-100); }
+  .cand-input, .cand-select {
+    font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 7px 10px;
+    border-radius: 8px; border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.08); color: #E2E8F0;
+  }
+  .cand-input { width: 150px; }
+  .cand-input::placeholder { color: #94A3B8; }
+  .cand-input:focus, .cand-select:focus { outline: none; border-color: var(--brand); background: rgba(255,255,255,0.12); }
+  .cand-select { max-width: 230px; cursor: pointer; }
+  .cand-select option { color: #1E293B; }
+  .toast {
+    position: fixed; bottom: 20px; left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--gray-900); color: #F1F5F9; padding: 10px 18px;
+    border-radius: 8px; font-size: 13px; box-shadow: var(--shadow-lg);
+    opacity: 0; pointer-events: none; transition: all 0.25s; z-index: 100;
+    border: 1px solid var(--border);
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
   /* ===== LAYOUT ===== */
   .layout { display: flex; min-height: calc(100vh - 52px); }
@@ -317,6 +336,13 @@
     <span>Agency Tool</span>
   </div>
   <div class="topbar-actions">
+    <input id="candidateName" class="cand-input" type="text" placeholder="Candidate name…" oninput="onCandidateNameInput(this.value)">
+    <button class="btn btn-primary" onclick="saveCandidate()"><i class="ti ti-device-floppy" aria-hidden="true"></i> Save</button>
+    <select id="savedSelect" class="cand-select" onchange="onSavedSelect(this.value)" title="Load a saved candidate">
+      <option value="">Saved candidates…</option>
+    </select>
+    <button class="btn btn-ghost" onclick="deleteCandidate()" title="Delete selected saved candidate"><i class="ti ti-trash" aria-hidden="true"></i></button>
+    <button class="btn btn-ghost" onclick="exportCandidate()"><i class="ti ti-download" aria-hidden="true"></i> Export</button>
     <button class="btn btn-ghost" onclick="resetAll()"><i class="ti ti-refresh" aria-hidden="true"></i> Reset All</button>
     <button class="btn btn-ghost" onclick="window.print()"><i class="ti ti-printer" aria-hidden="true"></i> Print</button>
   </div>
@@ -871,11 +897,13 @@ function toggleItem(section, idx) {
   checkedItems[key] = !checkedItems[key];
   renderMain();
   renderNav("", currentCat);
+  autosave();
 }
 
 function switchLevel(level) {
   currentLevel = level;
   renderMain();
+  autosave();
 }
 
 function filterNav(val) {
@@ -887,21 +915,181 @@ function filterCat(cat, el) {
   document.querySelectorAll(".pill").forEach(p => p.classList.remove("active"));
   el.classList.add("active");
   renderNav("", cat);
+  autosave();
 }
 
 function resetRole(id) {
   Object.keys(checkedItems).forEach(k => { if (k.startsWith(id + "-")) delete checkedItems[k]; });
   renderMain();
   renderNav("", currentCat);
+  autosave();
 }
 
 function resetAll() {
   checkedItems = {};
   renderNav("", currentCat);
   if (currentRole) renderMain();
+  autosave();
 }
 
-renderNav("", "all");
+/* ===== Persistence & candidate records (localStorage) ===== */
+const SESSION_KEY = "ri-checklist-session";
+const CANDIDATES_KEY = "ri-checklist-candidates";
+
+function safeGet(key) { try { return JSON.parse(localStorage.getItem(key) || "null"); } catch (e) { return null; } }
+function safeSet(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {} }
+function escapeHtml(s) { return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+
+function flash(msg) {
+  let t = document.getElementById("toast");
+  if (!t) { t = document.createElement("div"); t.id = "toast"; t.className = "toast"; document.body.appendChild(t); }
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove("show"), 2600);
+}
+
+// Auto-save the working state so nothing is lost on refresh.
+function autosave() {
+  safeSet(SESSION_KEY, { candidateName, currentRole, currentLevel, currentCat, checkedItems });
+}
+
+function restoreSession() {
+  const s = safeGet(SESSION_KEY);
+  if (!s) return;
+  candidateName = s.candidateName || "";
+  currentRole = s.currentRole || null;
+  currentLevel = s.currentLevel || "Mid";
+  currentCat = s.currentCat || "all";
+  checkedItems = s.checkedItems || {};
+  const input = document.getElementById("candidateName");
+  if (input) input.value = candidateName;
+  document.querySelectorAll(".pill").forEach(p => p.classList.toggle("active", p.dataset.cat === currentCat));
+}
+
+function onCandidateNameInput(val) { candidateName = val; autosave(); }
+
+// Score a role/level from the current checked items (independent of the active view).
+function scoreFor(roleId, level) {
+  const role = DATA[roleId];
+  if (!role) return { checked: 0, total: 0, pct: 0 };
+  const lv = role.levels[level];
+  let total = 0, checked = 0;
+  ["hard", "soft", "tools", "experience"].forEach(sec => {
+    lv[sec].forEach((_, idx) => {
+      total++;
+      if (checkedItems[`${roleId}-${level}-${sec}-${idx}`]) checked++;
+    });
+  });
+  return { checked, total, pct: total ? Math.round(checked / total * 100) : 0 };
+}
+
+function saveCandidate() {
+  if (!candidateName.trim()) { alert("Enter a candidate name first."); return; }
+  if (!currentRole) { alert("Select a role to evaluate first."); return; }
+  const id = candidateName.trim().toLowerCase();
+  const s = scoreFor(currentRole, currentLevel);
+  const all = safeGet(CANDIDATES_KEY) || {};
+  all[id] = {
+    name: candidateName.trim(), role: currentRole, roleTitle: DATA[currentRole].title,
+    level: currentLevel, score: s.pct, checked: checkedItems, ts: Date.now()
+  };
+  safeSet(CANDIDATES_KEY, all);
+  refreshSavedSelect(id);
+  flash(`Saved “${candidateName.trim()}” — ${DATA[currentRole].title} (${currentLevel}) · ${s.pct}%`);
+}
+
+function refreshSavedSelect(selectedId) {
+  const sel = document.getElementById("savedSelect");
+  if (!sel) return;
+  const all = safeGet(CANDIDATES_KEY) || {};
+  const ids = Object.keys(all).sort((a, b) => all[b].ts - all[a].ts);
+  sel.innerHTML = `<option value="">Saved candidates (${ids.length})…</option>` +
+    ids.map(id => `<option value="${escapeHtml(id)}">${escapeHtml(all[id].name)} — ${escapeHtml(all[id].roleTitle)} ${all[id].level} (${all[id].score}%)</option>`).join("");
+  if (selectedId) sel.value = selectedId;
+}
+
+function onSavedSelect(id) {
+  if (!id) return;
+  const all = safeGet(CANDIDATES_KEY) || {};
+  const rec = all[id];
+  if (!rec) return;
+  candidateName = rec.name;
+  checkedItems = rec.checked || {};
+  currentLevel = rec.level || "Mid";
+  currentCat = "all";
+  const input = document.getElementById("candidateName");
+  if (input) input.value = candidateName;
+  document.querySelectorAll(".pill").forEach(p => p.classList.toggle("active", p.dataset.cat === "all"));
+  selectRole(rec.role);
+  autosave();
+}
+
+function deleteCandidate() {
+  const sel = document.getElementById("savedSelect");
+  const id = sel ? sel.value : "";
+  if (!id) { alert("Pick a saved candidate from the list to delete."); return; }
+  const all = safeGet(CANDIDATES_KEY) || {};
+  const nm = all[id] ? all[id].name : "this candidate";
+  if (!confirm(`Delete the saved evaluation for “${nm}”?`)) return;
+  delete all[id];
+  safeSet(CANDIDATES_KEY, all);
+  refreshSavedSelect();
+}
+
+function buildReport() {
+  const role = DATA[currentRole], lvl = currentLevel;
+  const s = scoreFor(currentRole, lvl);
+  let verdict = "Not ready";
+  if (s.pct >= 80) verdict = "Strong candidate";
+  else if (s.pct >= 50) verdict = "Potential fit";
+  const L = role.levels[lvl];
+  const secNames = { hard: "HARD SKILLS", soft: "SOFT SKILLS", tools: "TOOLS & TECH", experience: "EXPERIENCE" };
+  const lines = [];
+  lines.push("REMOTE ISLANDER — CANDIDATE EVALUATION");
+  lines.push("============================================");
+  lines.push(`Candidate : ${candidateName.trim() || "(unnamed)"}`);
+  lines.push(`Role      : ${role.title}`);
+  lines.push(`Level     : ${lvl}`);
+  lines.push(`Score     : ${s.pct}%  (${s.checked}/${s.total})  —  ${verdict}`);
+  lines.push(`Date      : ${new Date().toLocaleString()}`);
+  lines.push("");
+  ["hard", "soft", "tools", "experience"].forEach(sec => {
+    lines.push(secNames[sec]);
+    L[sec].forEach((item, idx) => {
+      const on = checkedItems[`${currentRole}-${lvl}-${sec}-${idx}`];
+      lines.push(`  [${on ? "x" : " "}] ${item.text}${item.req ? "" : "  (preferred)"}`);
+    });
+    lines.push("");
+  });
+  lines.push("RED FLAGS");
+  role.redFlags.forEach(f => lines.push(`  - ${f}`));
+  lines.push("");
+  lines.push(`BASELINE (required for all ${role.title}s)`);
+  role.baseline.forEach(b => lines.push(`  - ${b}`));
+  lines.push("");
+  return lines.join("\n");
+}
+
+function exportCandidate() {
+  if (!currentRole) { alert("Select a role to export."); return; }
+  const text = buildReport();
+  const slug = (candidateName.trim() || DATA[currentRole].title).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `${slug}-evaluation.txt`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
+let candidateName = "";
+restoreSession();
+refreshSavedSelect();
+renderNav("", currentCat);
+if (currentRole) renderMain();
 </script>
 </body>
 </html>

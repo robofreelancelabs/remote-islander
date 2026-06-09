@@ -34,6 +34,14 @@ fields must be created first under **Settings → Properties → Contact propert
 | 11 | Anything else we should know? | `message` | Multi-line text | ⬜ | — (default) |
 | 12 | *(hidden)* Self-assessment readiness | `self_assessment_readiness` | Single-line text | ⬜ (hidden) | populated automatically by the page |
 
+### Current status (verified against portal 246255059)
+- ✅ Already exist (defaults): `firstname`, `lastname`, `email`, `phone`, `country`, `message`.
+- 🔨 Need to be created (Settings → Properties → Contact properties): `applying_for_role`,
+  `years_experience`, `internet_speed`, `us_hours_availability`, `profile_or_resume_url`,
+  `self_assessment_readiness`. *(The available HubSpot API tooling can read properties and
+  create/update contact records, but cannot create property definitions or build forms —
+  these two steps are done in the HubSpot UI / WordPress form kit.)*
+
 ### Notes
 - **Field 12 must be a *hidden* field** on the form. The portal page writes the
   visitor's self-assessment result into it on load (e.g. `SDR (Sales) — 80% ready`),
